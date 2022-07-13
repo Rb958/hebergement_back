@@ -3,6 +3,8 @@ package com.lsd.logement.dto;
 import com.lsd.logement.entity.finance.StatutCaisse;
 import com.lsd.logement.entity.personnel.User;
 
+import java.time.ZonedDateTime;
+
 public class CaisseDTO extends AbstractDTO<Integer> {
     private Integer id;
     private String nom;

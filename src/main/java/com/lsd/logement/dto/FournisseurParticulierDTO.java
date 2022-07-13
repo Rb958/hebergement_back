@@ -1,6 +1,8 @@
 package com.lsd.logement.dto;
 
-public class FournisseurDTO extends AbstractDTO<Integer> {
+import java.time.ZonedDateTime;
+
+public class FournisseurParticulierDTO extends AbstractDTO<Integer> {
     private Integer id;
     private String nom;
     private String prenom;
@@ -10,8 +12,10 @@ public class FournisseurDTO extends AbstractDTO<Integer> {
     private String echeance;
     private String mail1;
     private String mail2;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime lastUpdatedAt;
 
-    public FournisseurDTO() {
+    public FournisseurParticulierDTO() {
     }
 
     public void setId(Integer id) {
@@ -84,5 +88,21 @@ public class FournisseurDTO extends AbstractDTO<Integer> {
 
     public String getMail2() {
         return this.mail2;
+    }
+
+    public void setCreatedAt(java.time.ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public java.time.ZonedDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setLastUpdatedAt(java.time.ZonedDateTime lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    public java.time.ZonedDateTime getLastUpdatedAt() {
+        return this.lastUpdatedAt;
     }
 }

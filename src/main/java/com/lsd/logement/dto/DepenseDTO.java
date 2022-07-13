@@ -91,4 +91,12 @@ public class DepenseDTO extends AbstractDTO<Integer> {
     public java.time.ZonedDateTime getLastUpdatedAt() {
         return this.LastUpdatedAt;
     }
+
+    public StatutDepense getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatutDepense status) {
+        this.status = status;
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,9 @@ public class LigneCommandeServiceImpl implements LigneCommandeService {
 
     @Override
     public LigneCommande save(LigneCommande entity) {
+        ZonedDateTime currentDateTime = ZonedDateTime.now();
+        entity.setCreatedAt(currentDateTime);
+        entity.setLastUpdatedAt(currentDateTime);
         return repository.save(entity);
     }
 
@@ -55,8 +59,11 @@ public class LigneCommandeServiceImpl implements LigneCommandeService {
 
     @Override
     public LigneCommande update(LigneCommande entity, Integer id) {
-        Optional<LigneCommande> optional = findById(id) );
+        Optional<LigneCommande> optional = findById(id);
         if (optional.isPresent()) {
+            entity.setId(optional.get().getId());
+            entity.setCreatedAt(optional.get().getCreatedAt());
+            entity.setLastUpdatedAt(ZonedDateTime.now());
             return save(entity);
         }
         return null;

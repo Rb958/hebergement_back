@@ -1,6 +1,7 @@
 package com.lsd.logement.dto;
 
-import com.lsd.logement.entity.stock.Fournisseur;
+import com.lsd.logement.entity.stock.FournisseurEntreprise;
+import com.lsd.logement.entity.stock.FournisseurParticulier;
 import com.lsd.logement.entity.stock.LigneCommande;
 import com.lsd.logement.entity.stock.StatutCommande;
 
@@ -11,13 +12,15 @@ import java.util.List;
 public class CommandeDTO extends AbstractDTO<Integer> {
     private Integer id;
     private String refCmd;
-    private Fournisseur fournisseur;
     private String demandeur;
     private StatutCommande statut;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
     private Date dateLivraison;
-    private List<LigneCommande> commandes;
+    private FournisseurEntreprise fournisseurEntreprise;
+    private FournisseurParticulier fournisseurParticulier;
+    private int prixTotal;
+    private List<LigneCommande> ligneCommande;
 
     public CommandeDTO() {
     }
@@ -36,14 +39,6 @@ public class CommandeDTO extends AbstractDTO<Integer> {
 
     public String getRefCmd() {
         return this.refCmd;
-    }
-
-    public void setFournisseur(Fournisseur fournisseur) {
-        this.fournisseur = fournisseur;
-    }
-
-    public Fournisseur getFournisseur() {
-        return this.fournisseur;
     }
 
     public void setDemandeur(String demandeur) {
@@ -86,11 +81,35 @@ public class CommandeDTO extends AbstractDTO<Integer> {
         return this.dateLivraison;
     }
 
-    public void setCommandes(java.util.List<LigneCommande> commandes) {
-        this.commandes = commandes;
+    public FournisseurEntreprise getFournisseurEntreprise() {
+        return fournisseurEntreprise;
     }
 
-    public java.util.List<LigneCommande> getCommandes() {
-        return this.commandes;
+    public void setFournisseurEntreprise(FournisseurEntreprise fournisseurEntreprise) {
+        this.fournisseurEntreprise = fournisseurEntreprise;
+    }
+
+    public FournisseurParticulier getFournisseurParticulier() {
+        return fournisseurParticulier;
+    }
+
+    public void setFournisseurParticulier(FournisseurParticulier fournisseurParticulier) {
+        this.fournisseurParticulier = fournisseurParticulier;
+    }
+
+    public int getPrixTotal() {
+        return prixTotal;
+    }
+
+    public void setPrixTotal(int prixTotal) {
+        this.prixTotal = prixTotal;
+    }
+
+    public List<LigneCommande> getLigneCommande() {
+        return ligneCommande;
+    }
+
+    public void setLigneCommande(List<LigneCommande> ligneCommande) {
+        this.ligneCommande = ligneCommande;
     }
 }

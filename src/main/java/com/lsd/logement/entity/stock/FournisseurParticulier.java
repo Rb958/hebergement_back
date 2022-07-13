@@ -1,12 +1,15 @@
 package com.lsd.logement.entity.stock;
 
+import com.lsd.logement.entity.AbstractEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.ZonedDateTime;
 
 @Entity
-public class Fournisseur {
+public class FournisseurParticulier implements AbstractEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,8 +21,10 @@ public class Fournisseur {
     private String echeance;
     private String mail1;
     private String mail2;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime lastUpdatedAt;
 
-    public Fournisseur() {}
+    public FournisseurParticulier() {}
 
     public Integer getId() {
         return id;
@@ -91,5 +96,21 @@ public class Fournisseur {
 
     public void setMail2(String mail2) {
         this.mail2 = mail2;
+    }
+
+    public ZonedDateTime getLastUpdatedAt() {
+        return lastUpdatedAt;
+    }
+
+    public void setLastUpdatedAt(ZonedDateTime lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    public ZonedDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(ZonedDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

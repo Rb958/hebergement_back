@@ -16,9 +16,13 @@ public class Commande implements AbstractEntity<Integer> {
     private Integer id;
     private String refCmd;
     @ManyToOne
-    @JsonBackReference("cmd_fournisseur")
-    private Fournisseur fournisseur;
+    @JsonBackReference("cmd_fournisseur_entrepise")
+    private FournisseurEntreprise fournisseurEntreprise;
+    @ManyToOne
+    @JsonBackReference("cmd_fournisseur_particulier")
+    private FournisseurParticulier fournisseurParticulier;
     private String demandeur;
+    private int prixTotal;
     @Enumerated(EnumType.STRING)
     private StatutCommande statut;
     private ZonedDateTime createdAt;
@@ -28,7 +32,7 @@ public class Commande implements AbstractEntity<Integer> {
 
     @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
     @JsonManagedReference("cmd_lignes_commande")
-    private List<LigneCommande> commandes;
+    private List<LigneCommande> ligneCommande;
 
     public Commande() {}
 
@@ -50,12 +54,20 @@ public class Commande implements AbstractEntity<Integer> {
         this.refCmd = refCmd;
     }
 
-    public Fournisseur getFournisseur() {
-        return fournisseur;
+    public FournisseurEntreprise getFournisseurEntreprise() {
+        return fournisseurEntreprise;
     }
 
-    public void setFournisseur(Fournisseur fournisseur) {
-        this.fournisseur = fournisseur;
+    public void setFournisseurEntreprise(FournisseurEntreprise fournisseurEntreprise) {
+        this.fournisseurEntreprise = fournisseurEntreprise;
+    }
+
+    public FournisseurParticulier getFournisseurParticulier() {
+        return fournisseurParticulier;
+    }
+
+    public void setFournisseurParticulier(FournisseurParticulier fournisseurParticulier) {
+        this.fournisseurParticulier = fournisseurParticulier;
     }
 
     public String getDemandeur() {
@@ -102,11 +114,19 @@ public class Commande implements AbstractEntity<Integer> {
         this.dateLivraison = dateLivraison;
     }
 
-    public List<LigneCommande> getCommandes() {
-        return commandes;
+    public List<LigneCommande> getLigneCommande() {
+        return ligneCommande;
     }
 
-    public void setCommandes(List<LigneCommande> commandes) {
-        this.commandes = commandes;
+    public void setLigneCommande(List<LigneCommande> commandes) {
+        this.ligneCommande = commandes;
+    }
+
+    public int getPrixTotal() {
+        return prixTotal;
+    }
+
+    public void setPrixTotal(int prixTotal) {
+        this.prixTotal = prixTotal;
     }
 }

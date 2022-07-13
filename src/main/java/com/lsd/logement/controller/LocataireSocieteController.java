@@ -10,21 +10,21 @@ import java.util.List;
 
 //@Api(tags = "LocataireSociete API")
 public interface LocataireSocieteController {
-//    @ApiOperation("Add new data")
+//
     public LocataireSocieteDTO save(@RequestBody LocataireSocieteDTO locataireSociete);
 
-//    @ApiOperation("Find by Id")
+//
     public LocataireSocieteDTO findById(@PathVariable("id") Integer id);
 
-//    @ApiOperation("Delete based on primary key")
+//
     public void delete(@PathVariable("id") Integer id);
 
-//    @ApiOperation("Find all data")
+//    
     public List<LocataireSocieteDTO> list();
 
-//    @ApiOperation("Pagination request")
+//    
     public Page<LocataireSocieteDTO> pageQuery(Pageable pageable);
 
-//    @ApiOperation("Update one data")
+//    
     public LocataireSocieteDTO update(@RequestBody LocataireSocieteDTO dto, @PathVariable("id") Integer id);
 }

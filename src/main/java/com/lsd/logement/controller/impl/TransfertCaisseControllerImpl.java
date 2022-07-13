@@ -4,18 +4,19 @@ import com.lsd.logement.controller.TransfertCaisseController;
 import com.lsd.logement.dto.TransfertCaisseDTO;
 import com.lsd.logement.entity.finance.TransfertCaisse;
 import com.lsd.logement.mapper.TransfertCaisseMapper;
+import com.lsd.logement.model.ApiResponse;
 import com.lsd.logement.service.TransfertCaisseService;
-import okhttp3.RequestBody;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/transfert-caisse")
+@RequestMapping("/api/transfert-caisse")
 @RestController
 public class TransfertCaisseControllerImpl implements TransfertCaisseController {
     private final TransfertCaisseService transfertCaisseService;
@@ -26,47 +27,82 @@ public class TransfertCaisseControllerImpl implements TransfertCaisseController 
         this.transfertCaisseMapper = transfertCaisseMapper;
     }
 
-    @Override
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public TransfertCaisseDTO save(@RequestBody TransfertCaisseDTO transfertCaisseDTO) {
-        TransfertCaisse transfertCaisse = transfertCaisseMapper.asEntity(transfertCaisseDTO);
-        return transfertCaisseMapper.asDTO(transfertCaisseService.save(transfertCaisse));
+    public ResponseEntity<ApiResponse<?>> save(@RequestBody TransfertCaisseDTO transfertCaisseDTO) {
+        try {
+            TransfertCaisse transfertCaisse = transfertCaisseMapper.asEntity(transfertCaisseDTO);
+            return ResponseEntity.ok(
+                    new ApiResponse<>(transfertCaisseMapper.asDTO(transfertCaisseService.save(transfertCaisse)))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
     }
 
     @Override
     @GetMapping("/{id}")
-    public TransfertCaisseDTO findById(@PathVariable("id") Integer id) {
-        TransfertCaisse transfertCaisse = transfertCaisseService.findById(id).orElse(null);
-        return transfertCaisseMapper.asDTO(transfertCaisse);
+    public ResponseEntity<ApiResponse<?>> findById(@PathVariable("id") Integer id) {
+        try {
+            TransfertCaisse transfertCaisse = transfertCaisseService.findById(id).orElse(null);
+            return ResponseEntity.ok(
+                    new ApiResponse<>(transfertCaisseMapper.asDTO(transfertCaisse))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) {
-        transfertCaisseService.deleteById(id);
+    public ResponseEntity<ApiResponse<?>> delete(@PathVariable("id") Integer id) {
+        try {
+            transfertCaisseService.deleteById(id);
+            return ResponseEntity.ok(
+                    new ApiResponse<>(HttpStatus.OK.value(), "TransfertCaisse supprimé avec succes")
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
+
     }
 
     @Override
     @GetMapping
-    public List<TransfertCaisseDTO> list() {
-        return transfertCaisseMapper.asDTOList(transfertCaisseService.findAll());
+    public ResponseEntity<ApiResponse<?>> list() {
+        try {
+            return ResponseEntity.ok(
+                    new ApiResponse<>(transfertCaisseMapper.asDTOList(transfertCaisseService.findAll()))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
     }
 
     @Override
     @GetMapping("/page-query")
-    public Page<TransfertCaisseDTO> pageQuery(Pageable pageable) {
-        Page<TransfertCaisse> transfertCaissePage = transfertCaisseService.findAll(pageable);
-        List<TransfertCaisseDTO> dtoList = transfertCaissePage
-                .stream()
-                .map(transfertCaisseMapper::asDTO).collect(Collectors.toList());
-        return new PageImpl<>(dtoList, pageable, transfertCaissePage.getTotalElements());
+    public ResponseEntity<ApiResponse<?>> pageQuery(Pageable pageable) {
+        try {
+            Page<TransfertCaisse> transfertCaissePage = transfertCaisseService.findAll(pageable);
+            List<TransfertCaisseDTO> dtoList = transfertCaissePage
+                    .stream()
+                    .map(transfertCaisseMapper::asDTO).collect(Collectors.toList());
+            return ResponseEntity.ok(
+                    new ApiResponse<>(new PageImpl<>(dtoList, pageable, transfertCaissePage.getTotalElements()))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
     }
 
     @Override
     @PutMapping("/{id}")
-    public TransfertCaisseDTO update(@RequestBody TransfertCaisseDTO transfertCaisseDTO, @PathVariable("id") Integer id) {
-        TransfertCaisse transfertCaisse = transfertCaisseMapper.asEntity(transfertCaisseDTO);
-        return transfertCaisseMapper.asDTO(transfertCaisseService.update(transfertCaisse, id));
+    public ResponseEntity<ApiResponse<?>> update(@RequestBody TransfertCaisseDTO transfertCaisseDTO, @PathVariable("id") Integer id) {
+        try {
+            TransfertCaisse transfertCaisse = transfertCaisseMapper.asEntity(transfertCaisseDTO);
+            return ResponseEntity.ok(
+                    new ApiResponse<>(transfertCaisseMapper.asDTO(transfertCaisseService.update(transfertCaisse, id)))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
     }
 }

@@ -71,7 +71,7 @@ public class Payement implements AbstractEntity<Integer>, Serializable {
         this.amount = amount;
     }
 
-    public boolean isLast() {
+    public boolean getIsLast() {
         return isLast;
     }
 

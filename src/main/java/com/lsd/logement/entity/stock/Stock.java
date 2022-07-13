@@ -2,6 +2,7 @@ package com.lsd.logement.entity.stock;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.lsd.logement.entity.AbstractEntity;
+import com.lsd.logement.entity.stock.Article;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;

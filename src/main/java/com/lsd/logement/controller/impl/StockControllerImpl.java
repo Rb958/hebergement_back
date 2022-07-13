@@ -1,11 +1,11 @@
 package com.lsd.logement.controller.impl;
 
-import com.lsd.logement.controller.DepenseController;
-import com.lsd.logement.dto.DepenseDTO;
-import com.lsd.logement.entity.finance.Depense;
-import com.lsd.logement.mapper.DepenseMapper;
+import com.lsd.logement.controller.StockController;
+import com.lsd.logement.dto.StockDTO;
+import com.lsd.logement.entity.stock.Stock;
+import com.lsd.logement.mapper.StockMapper;
 import com.lsd.logement.model.ApiResponse;
-import com.lsd.logement.service.DepenseService;
+import com.lsd.logement.service.StockService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/api/depense")
+@RequestMapping("/api/stock")
 @RestController
-public class DepenseControllerImpl implements DepenseController {
-    private final DepenseService depenseService;
-    private final DepenseMapper depenseMapper;
+public class StockControllerImpl implements StockController {
+    private final StockService stockService;
+    private final StockMapper stockMapper;
 
-    public DepenseControllerImpl(DepenseService depenseService, DepenseMapper depenseMapper) {
-        this.depenseService = depenseService;
-        this.depenseMapper = depenseMapper;
+    public StockControllerImpl(StockService stockService, StockMapper stockMapper) {
+        this.stockService = stockService;
+        this.stockMapper = stockMapper;
     }
 
-    public ResponseEntity<ApiResponse<?>> save(@RequestBody DepenseDTO depenseDTO) {
+    public ResponseEntity<ApiResponse<?>> save(@RequestBody StockDTO stockDTO) {
         try {
-            Depense depense = depenseMapper.asEntity(depenseDTO);
+            Stock stock = stockMapper.asEntity(stockDTO);
             return ResponseEntity.ok(
-                    new ApiResponse<>(depenseMapper.asDTO(depenseService.save(depense)))
+                    new ApiResponse<>(stockMapper.asDTO(stockService.save(stock)))
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -42,9 +42,9 @@ public class DepenseControllerImpl implements DepenseController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<?>> findById(@PathVariable("id") Integer id) {
         try {
-            Depense depense = depenseService.findById(id).orElse(null);
+            Stock stock = stockService.findById(id).orElse(null);
             return ResponseEntity.ok(
-                    new ApiResponse<>(depenseMapper.asDTO(depense))
+                    new ApiResponse<>(stockMapper.asDTO(stock))
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -55,9 +55,9 @@ public class DepenseControllerImpl implements DepenseController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<?>> delete(@PathVariable("id") Integer id) {
         try {
-            depenseService.deleteById(id);
+            stockService.deleteById(id);
             return ResponseEntity.ok(
-                    new ApiResponse<>(HttpStatus.OK.value(), "Depense supprimé avec succes")
+                    new ApiResponse<>(HttpStatus.OK.value(), "Stock supprimé avec succes")
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -70,7 +70,7 @@ public class DepenseControllerImpl implements DepenseController {
     public ResponseEntity<ApiResponse<?>> list() {
         try {
             return ResponseEntity.ok(
-                    new ApiResponse<>(depenseMapper.asDTOList(depenseService.findAll()))
+                    new ApiResponse<>(stockMapper.asDTOList(stockService.findAll()))
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -81,12 +81,12 @@ public class DepenseControllerImpl implements DepenseController {
     @GetMapping("/page-query")
     public ResponseEntity<ApiResponse<?>> pageQuery(Pageable pageable) {
         try {
-            Page<Depense> depensePage = depenseService.findAll(pageable);
-            List<DepenseDTO> dtoList = depensePage
+            Page<Stock> stockPage = stockService.findAll(pageable);
+            List<StockDTO> dtoList = stockPage
                     .stream()
-                    .map(depenseMapper::asDTO).collect(Collectors.toList());
+                    .map(stockMapper::asDTO).collect(Collectors.toList());
             return ResponseEntity.ok(
-                    new ApiResponse<>(new PageImpl<>(dtoList, pageable, depensePage.getTotalElements()))
+                    new ApiResponse<>(new PageImpl<>(dtoList, pageable, stockPage.getTotalElements()))
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -95,11 +95,11 @@ public class DepenseControllerImpl implements DepenseController {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<?>> update(@RequestBody DepenseDTO depenseDTO, @PathVariable("id") Integer id) {
+    public ResponseEntity<ApiResponse<?>> update(@RequestBody StockDTO stockDTO, @PathVariable("id") Integer id) {
         try {
-            Depense depense = depenseMapper.asEntity(depenseDTO);
+            Stock stock = stockMapper.asEntity(stockDTO);
             return ResponseEntity.ok(
-                    new ApiResponse<>(depenseMapper.asDTO(depenseService.update(depense, id)))
+                    new ApiResponse<>(stockMapper.asDTO(stockService.update(stock, id)))
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));

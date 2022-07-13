@@ -1,7 +1,9 @@
 package com.lsd.logement.controller.impl;
 
-import com.lsd.logement.entity.stock.Fournisseur;
+import com.lsd.logement.entity.stock.Stock;
 import com.lsd.logement.mapper.ReferenceMapper;
+import com.lsd.logement.mapper.StockMapper;
+import com.lsd.logement.service.StockService;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.Is;
 import org.mockito.ArgumentMatchers;
@@ -21,30 +23,30 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-public class FournisseurControllerImplTest {
-    //TODO: create the data Test generator class FournisseurBuilder
-    private static final String ENDPOINT_URL = "/fournisseurs";
+public class StockControllerImplTest {
+    //TODO: create the data Test generator class StockBuilder
+    private static final String ENDPOINT_URL = "/stocks";
     @MockBean
     private ReferenceMapper referenceMapper;
     @InjectMocks
-    private FournisseurControllerImpl fournisseurController;
+    private StockControllerImpl stockController;
     @MockBean
-    private FournisseurService fournisseurService;
+    private StockService stockService;
     @MockBean
-    private FournisseurMapper fournisseurMapper;
+    private StockMapper stockMapper;
     @Autowired
     private MockMvc mockMvc;
 
     @Before
     public void setup() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.fournisseurController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.stockController).build();
     }
 
     @Test
     public void getAll() throws Exception {
-        Mockito.when(fournisseurMapper.asDTOList(ArgumentMatchers.any())).thenReturn(FournisseurBuilder.getListDTO());
+        Mockito.when(stockMapper.asDTOList(ArgumentMatchers.any())).thenReturn(StockBuilder.getListDTO());
 
-        Mockito.when(fournisseurService.findAll()).thenReturn(FournisseurBuilder.getListEntities());
+        Mockito.when(stockService.findAll()).thenReturn(StockBuilder.getListEntities());
         mockMvc.perform(MockMvcRequestBuilders.get(ENDPOINT_URL))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content()
@@ -55,53 +57,53 @@ public class FournisseurControllerImplTest {
 
     @Test
     public void getById() throws Exception {
-        Mockito.when(fournisseurMapper.asDTO(ArgumentMatchers.any())).thenReturn(FournisseurBuilder.getDTO());
+        Mockito.when(stockMapper.asDTO(ArgumentMatchers.any())).thenReturn(StockBuilder.getDTO());
 
-        Mockito.when(fournisseurService.findById(ArgumentMatchers.anyInteger())).thenReturn(java.util.Optional.of(FournisseurBuilder.getEntity()));
+        Mockito.when(stockService.findById(ArgumentMatchers.anyInteger())).thenReturn(java.util.Optional.of(StockBuilder.getEntity()));
 
         mockMvc.perform(MockMvcRequestBuilders.get(ENDPOINT_URL + "/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Is.is(1)));
-        Mockito.verify(fournisseurService, Mockito.times(1)).findById(1L);
-        Mockito.verifyNoMoreInteractions(fournisseurService);
+        Mockito.verify(stockService, Mockito.times(1)).findById(1L);
+        Mockito.verifyNoMoreInteractions(stockService);
     }
 
     @Test
     public void save() throws Exception {
-        Mockito.when(fournisseurMapper.asEntity(ArgumentMatchers.any())).thenReturn(FournisseurBuilder.getEntity());
-        Mockito.when(fournisseurService.save(ArgumentMatchers.any(Fournisseur.class))).thenReturn(FournisseurBuilder.getEntity());
+        Mockito.when(stockMapper.asEntity(ArgumentMatchers.any())).thenReturn(StockBuilder.getEntity());
+        Mockito.when(stockService.save(ArgumentMatchers.any(Stock.class))).thenReturn(StockBuilder.getEntity());
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post(ENDPOINT_URL)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(CustomUtils.asJsonString(FournisseurBuilder.getDTO())))
+                        .content(CustomUtils.asJsonString(StockBuilder.getDTO())))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
-        Mockito.verify(fournisseurService, Mockito.times(1)).save(ArgumentMatchers.any(Fournisseur.class));
-        Mockito.verifyNoMoreInteractions(fournisseurService);
+        Mockito.verify(stockService, Mockito.times(1)).save(ArgumentMatchers.any(Stock.class));
+        Mockito.verifyNoMoreInteractions(stockService);
     }
 
     @Test
     public void update() throws Exception {
-        Mockito.when(fournisseurMapper.asEntity(ArgumentMatchers.any())).thenReturn(FournisseurBuilder.getEntity());
-        Mockito.when(fournisseurService.update(ArgumentMatchers.any(), ArgumentMatchers.anyInteger())).thenReturn(FournisseurBuilder.getEntity());
+        Mockito.when(stockMapper.asEntity(ArgumentMatchers.any())).thenReturn(StockBuilder.getEntity());
+        Mockito.when(stockService.update(ArgumentMatchers.any(), ArgumentMatchers.anyInteger())).thenReturn(StockBuilder.getEntity());
 
         mockMvc.perform(
                 MockMvcRequestBuilders.put(ENDPOINT_URL + "/1")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(CustomUtils.asJsonString(FournisseurBuilder.getDTO())))
+                        .content(CustomUtils.asJsonString(StockBuilder.getDTO())))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-        Mockito.verify(fournisseurService, Mockito.times(1)).update(ArgumentMatchers.any(Fournisseur.class), ArgumentMatchers.anyInteger());
-        Mockito.verifyNoMoreInteractions(fournisseurService);
+        Mockito.verify(stockService, Mockito.times(1)).update(ArgumentMatchers.any(Stock.class), ArgumentMatchers.anyInteger());
+        Mockito.verifyNoMoreInteractions(stockService);
     }
 
     @Test
     public void delete() throws Exception {
-        Mockito.doNothing().when(fournisseurService).deleteById(ArgumentMatchers.anyInteger());
+        Mockito.doNothing().when(stockService).deleteById(ArgumentMatchers.anyInteger());
         mockMvc.perform(
                 MockMvcRequestBuilders.delete(ENDPOINT_URL + "/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-        Mockito.verify(fournisseurService, Mockito.times(1)).deleteById(Mockito.anyInteger());
-        Mockito.verifyNoMoreInteractions(fournisseurService);
+        Mockito.verify(stockService, Mockito.times(1)).deleteById(Mockito.anyInteger());
+        Mockito.verifyNoMoreInteractions(stockService);
     }

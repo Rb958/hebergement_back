@@ -1,324 +1,45 @@
-2022-07-10 15:45:59,803 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
-2022-07-10 15:45:59,866 INFO o.s.b.StartupInfoLogger [main] Starting LogementApplication using Java 11.0.14 on Zoe with PID 14362 (/home/richie/Projet/Clients/LSD/Java version/logement1/logement/build/classes/java/main started by richie in /home/richie/Projet/Clients/LSD/Java version/logement1/logement)
-2022-07-10 15:45:59,873 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2022-07-10 15:46:03,774 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-07-10 15:46:03,879 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 93 ms. Found 7 JPA repository interfaces.
-2022-07-10 15:46:05,702 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2022-07-10 15:46:05,713 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2022-07-10 15:46:05,714 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2022-07-10 15:46:05,714 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.60]
-2022-07-10 15:46:06,101 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2022-07-10 15:46:06,102 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 6137 ms
-2022-07-10 15:46:06,585 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-07-10 15:46:06,792 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.7.Final
-2022-07-10 15:46:07,246 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-07-10 15:46:07,477 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
-2022-07-10 15:46:09,243 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
-2022-07-10 15:46:09,340 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2022-07-10 15:46:11,262 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-07-10 15:46:11,287 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-07-10 15:46:11,891 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-07-10 15:46:12,952 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will not secure any request
-2022-07-10 15:46:13,677 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2022-07-10 15:46:13,761 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2022-07-10 15:46:13,776 INFO o.s.b.StartupInfoLogger [main] Started LogementApplication in 14.793 seconds (JVM running for 20.805)
-2022-07-10 15:46:14,057 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-07-10 15:46:14,058 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2022-07-10 15:46:14,059 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
-2022-07-10 15:46:14,089 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:46:18,937 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:46:23,938 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:46:28,937 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:46:33,937 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:46:38,937 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:46:41,411 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-8] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:46:41Z, a difference of 31339395 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:46:41,412 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:46:43,938 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:46:48,940 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:46:53,939 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:46:58,939 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:47:03,939 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:47:08,939 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:47:13,943 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:47:18,943 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:47:23,944 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:47:28,944 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:47:33,943 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:47:38,944 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:47:43,944 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:47:48,945 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:47:53,946 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:47:58,959 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:48:03,960 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:48:08,963 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:48:13,963 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:48:18,962 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:48:23,964 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:48:28,966 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:48:33,964 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:48:38,967 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:48:43,968 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:48:48,968 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:48:53,970 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:48:58,970 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:49:03,971 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:49:08,969 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:49:13,970 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:49:18,972 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:49:23,971 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:49:28,972 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:49:30,007 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-5] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:49:30Z, a difference of 31508006 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:49:30,008 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:49:33,973 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:49:38,974 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:49:43,974 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:49:48,977 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:49:53,978 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:49:58,978 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:50:03,979 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:50:08,980 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:50:13,981 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:50:18,981 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:50:23,980 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:50:28,983 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:50:33,982 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:50:38,981 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:50:43,981 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:50:48,984 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:50:53,985 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:50:58,983 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:51:03,984 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:51:08,985 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:51:13,985 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:51:15,264 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-9] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:51:15Z, a difference of 31613263 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:51:15,264 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:51:18,987 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:51:23,987 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:51:28,987 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:51:33,988 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:51:38,988 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:51:43,988 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:51:48,990 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:51:53,992 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:51:58,992 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:52:03,993 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:52:08,995 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:52:13,995 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:52:18,996 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:52:23,996 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:52:28,997 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:52:33,996 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:52:38,999 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:52:43,985 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-9] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:52:43Z, a difference of 31701985 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:52:43,986 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:52:44,001 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:52:48,999 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:52:54,000 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:52:59,004 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:53:04,004 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:53:09,008 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:53:14,014 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:53:19,017 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:53:24,016 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:53:29,025 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:53:34,026 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:53:39,025 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:53:44,026 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:53:49,027 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:53:54,027 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:53:58,009 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-7] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:53:58Z, a difference of 31776009 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:53:58,013 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:53:59,031 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:54:03,444 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-9] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:54:03Z, a difference of 31781443 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:54:03,444 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:54:04,031 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:54:09,032 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:54:14,032 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:54:18,340 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-5] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:54:18Z, a difference of 31796340 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:54:18,342 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:54:19,034 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:54:24,034 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:54:24,716 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-10] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:54:24Z, a difference of 31802715 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:54:24,716 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:54:29,034 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:54:30,597 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-2] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:54:30Z, a difference of 31808596 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:54:30,597 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:54:34,159 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:54:39,035 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:54:44,037 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:54:49,036 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:54:54,044 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:54:59,050 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:55:04,052 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:55:09,053 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:55:14,239 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:55:17,497 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-3] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:55:17Z, a difference of 31855497 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:55:17,497 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:55:19,230 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:55:24,231 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:55:29,230 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:55:34,231 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:55:39,235 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:55:41,765 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-9] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:55:41Z, a difference of 31879765 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:55:41,766 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:55:44,236 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:55:49,238 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:55:54,238 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:55:59,239 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:56:04,240 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:56:09,239 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:56:14,242 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:56:19,240 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:56:24,242 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:56:29,243 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:56:34,242 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:56:39,244 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:56:43,606 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-5] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:56:43Z, a difference of 31941605 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:56:43,606 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:56:44,245 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:56:49,330 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:56:54,259 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:56:59,260 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:57:04,259 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:57:08,813 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-2] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T15:57:08Z, a difference of 31966813 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 15:57:08,813 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/booking/page-query/
-2022-07-10 15:57:09,262 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:57:14,262 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:57:19,263 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:57:24,263 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:57:29,264 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:57:34,266 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:57:39,266 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:57:44,266 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:57:49,267 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:57:54,267 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:57:59,269 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:58:04,271 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:58:09,272 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:58:14,273 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:58:19,276 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:58:24,275 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:58:29,275 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:58:34,276 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:58:39,276 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:58:44,277 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:58:49,279 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:58:54,280 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:58:59,281 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:59:04,282 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:59:09,282 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 15:59:14,283 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 15:59:19,284 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 15:59:24,285 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 15:59:29,286 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 15:59:34,287 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 15:59:39,288 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 15:59:44,288 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 15:59:49,289 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 15:59:54,289 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 15:59:59,290 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 16:00:04,291 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 16:00:09,292 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:00:14,292 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:00:19,292 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:00:24,293 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:00:29,295 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:00:34,296 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:00:39,296 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 16:00:44,297 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 16:00:49,297 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 16:00:54,298 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 16:00:59,299 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:01:04,299 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:01:09,300 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:01:14,301 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:01:19,301 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:01:24,302 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:01:29,302 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 16:01:34,303 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 16:01:39,304 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 16:01:44,305 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 16:01:49,305 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:01:54,306 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:01:59,307 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:02:04,308 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:02:09,309 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:02:14,310 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:02:19,310 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 16:02:24,310 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 16:02:29,311 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 16:02:34,311 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 16:02:39,312 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:02:44,312 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:02:49,312 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:02:54,312 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:02:59,312 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:03:04,315 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:03:09,314 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 16:03:14,315 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 16:03:19,315 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 16:03:24,317 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 16:03:29,317 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:03:34,321 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:03:39,319 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:03:44,321 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:03:49,321 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:03:54,323 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:03:59,324 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 16:04:04,324 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 16:04:09,325 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 16:04:14,326 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 16:04:19,326 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:04:24,325 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:04:29,326 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:04:34,326 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:04:39,329 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:04:44,328 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:04:49,330 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 16:04:54,331 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 16:04:56,248 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-10] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T16:04:56Z, a difference of 32434248 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 16:04:56,248 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/booking/page-query/
-2022-07-10 16:04:59,330 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 16:05:04,330 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 16:05:09,331 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 16:05:14,331 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 16:05:19,335 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 16:05:24,334 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 16:29:22,579 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m23s9ms206µs390ns).
-2022-07-10 16:30:02,048 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m55s331ms484µs56ns).
-2022-07-10 17:14:34,242 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 17:14:40,028 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 17:14:49,706 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 17:14:55,526 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 17:15:00,523 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 17:15:06,574 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 17:15:11,572 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 17:15:16,573 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 17:15:21,574 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 17:15:26,575 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 17:15:31,574 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 17:15:36,578 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 17:15:41,576 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 17:15:46,577 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 17:15:51,578 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 17:15:56,579 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 17:15:59,795 ERROR c.l.l.s.j.JwtUtils [http-nio-8080-exec-5] JWT token is expired: JWT expired at 2022-07-10T07:04:22Z. Current time: 2022-07-10T17:15:59Z, a difference of 36697794 milliseconds.  Allowed clock skew: 0 milliseconds.
-2022-07-10 17:15:59,795 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/booking/page-query/
-2022-07-10 17:16:01,580 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 17:16:06,581 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 17:16:11,581 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 17:16:16,583 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
-2022-07-10 17:16:21,583 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 17:16:26,585 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 17:16:31,585 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
-2022-07-10 17:16:36,586 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
-2022-07-10 17:16:41,586 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
-2022-07-10 17:16:46,587 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
-2022-07-10 17:16:51,587 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
-2022-07-10 17:16:56,588 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
-2022-07-10 17:17:01,588 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
-2022-07-10 17:17:06,588 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
-2022-07-10 17:17:11,590 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
-2022-07-10 17:17:11,686 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-07-10 17:17:11,742 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2022-07-10 17:17:11,788 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-07-13 03:27:31,570 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 6.2.3.Final
+2022-07-13 03:27:31,622 INFO o.s.b.StartupInfoLogger [main] Starting LogementApplication using Java 11.0.14 on Zoe with PID 3384 (/home/richie/Projet/Clients/LSD/Java version/logement1/logement/build/classes/java/main started by richie in /home/richie/Projet/Clients/LSD/Java version/logement1/logement)
+2022-07-13 03:27:31,632 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-07-13 03:27:32,668 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-07-13 03:27:32,812 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 136 ms. Found 16 JPA repository interfaces.
+2022-07-13 03:27:33,454 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-07-13 03:27:33,466 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-07-13 03:27:33,468 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2022-07-13 03:27:33,469 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-07-13 03:27:33,687 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-07-13 03:27:33,687 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1999 ms
+2022-07-13 03:27:33,983 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-07-13 03:27:34,025 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 5.6.7.Final
+2022-07-13 03:27:34,149 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-07-13 03:27:34,222 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2022-07-13 03:27:34,542 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-07-13 03:27:34,558 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-07-13 03:27:40,773 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-07-13 03:27:40,783 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-07-13 03:27:41,101 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-07-13 03:27:41,931 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will not secure any request
+2022-07-13 03:27:42,382 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-07-13 03:27:42,395 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2022-07-13 03:27:42,406 INFO o.s.b.StartupInfoLogger [main] Started LogementApplication in 11.41 seconds (JVM running for 14.434)
+2022-07-13 03:27:47,039 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-07-13 03:27:47,039 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-07-13 03:27:47,041 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-07-13 03:27:47,054 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
+2022-07-13 03:27:51,966 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
+2022-07-13 03:27:56,967 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
+2022-07-13 03:28:01,970 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
+2022-07-13 03:28:06,968 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
+2022-07-13 03:28:11,973 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-6] http://localhost:8080/api/json
+2022-07-13 03:28:16,972 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-7] http://localhost:8080/api/json
+2022-07-13 03:28:21,973 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-8] http://localhost:8080/api/json
+2022-07-13 03:28:26,973 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-9] http://localhost:8080/api/json
+2022-07-13 03:28:31,976 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-10] http://localhost:8080/api/json
+2022-07-13 03:28:36,975 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-1] http://localhost:8080/api/json
+2022-07-13 03:28:41,978 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-2] http://localhost:8080/api/json
+2022-07-13 03:28:46,976 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-3] http://localhost:8080/api/json
+2022-07-13 03:28:51,978 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-4] http://localhost:8080/api/json
+2022-07-13 03:28:56,979 INFO c.l.l.s.j.AuthTokenFilter [http-nio-8080-exec-5] http://localhost:8080/api/json
+2022-07-13 03:28:57,529 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-13 03:28:57,532 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-07-13 03:28:57,548 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

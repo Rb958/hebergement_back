@@ -1,8 +1,8 @@
 package com.lsd.logement.service.impl;
 
-import com.lsd.logement.dao.ArticleRepository;
-import com.lsd.logement.entity.stock.Article;
-import com.lsd.logement.service.ArticleService;
+import com.lsd.logement.dao.FournisseurParticulierRepository;
+import com.lsd.logement.entity.stock.FournisseurParticulier;
+import com.lsd.logement.service.FournisseurParticulierService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -15,15 +15,15 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ArticleServiceImpl implements ArticleService {
-    private final ArticleRepository repository;
+public class FournisseurParticulierServiceImpl implements FournisseurParticulierService {
+    private final FournisseurParticulierRepository repository;
 
-    public ArticleServiceImpl(ArticleRepository repository) {
+    public FournisseurParticulierServiceImpl(FournisseurParticulierRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public Article save(Article entity) {
+    public FournisseurParticulier save(FournisseurParticulier entity) {
         ZonedDateTime currentDateTime = ZonedDateTime.now();
         entity.setCreatedAt(currentDateTime);
         entity.setLastUpdatedAt(currentDateTime);
@@ -31,8 +31,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> save(List<Article> entities) {
-        return (List<Article>) repository.saveAll(entities);
+    public List<FournisseurParticulier> save(List<FournisseurParticulier> entities) {
+        return (List<FournisseurParticulier>) repository.saveAll(entities);
     }
 
     @Override
@@ -41,25 +41,25 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Optional<Article> findById(Integer id) {
+    public Optional<FournisseurParticulier> findById(Integer id) {
         return repository.findById(id);
     }
 
     @Override
-    public List<Article> findAll() {
-        return (List<Article>) repository.findAll();
+    public List<FournisseurParticulier> findAll() {
+        return (List<FournisseurParticulier>) repository.findAll();
     }
 
     @Override
-    public Page<Article> findAll(Pageable pageable) {
-        Page<Article> entityPage = repository.findAll(pageable);
-        List<Article> entities = entityPage.getContent();
+    public Page<FournisseurParticulier> findAll(Pageable pageable) {
+        Page<FournisseurParticulier> entityPage = repository.findAll(pageable);
+        List<FournisseurParticulier> entities = entityPage.getContent();
         return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
     }
 
     @Override
-    public Article update(Article entity, Integer id) {
-        Optional<Article> optional = findById(id);
+    public FournisseurParticulier update(FournisseurParticulier entity, Integer id) {
+        Optional<FournisseurParticulier> optional = findById(id);
         if (optional.isPresent()) {
             entity.setId(optional.get().getId());
             entity.setCreatedAt(optional.get().getCreatedAt());
