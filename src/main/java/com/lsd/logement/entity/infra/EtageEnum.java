@@ -1,0 +1,26 @@
+package com.lsd.logement.entity.infra;
+
+public enum EtageEnum {
+    REZ_DE_CHAUSSEE,
+    SOUS_SOL,
+    NIVEAU_1,
+    NIVEAU_2,
+    NIVEAU_3,
+    NIVEAU_4,
+    NIVEAU_5,
+    NIVEAU_6,
+    NIVEAU_7,
+    NIVEAU_8,
+    NIVEAU_9,
+    NIVEAU_10,
+    NIVEAU_11,
+    NIVEAU_12,
+    NIVEAU_13,
+    NIVEAU_14,
+    NIVEAU_15,
+    NIVEAU_16,
+    NIVEAU_17,
+    NIVEAU_18,
+    NIVEAU_19,
+    NIVEAU_20,
+}
