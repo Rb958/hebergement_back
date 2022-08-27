@@ -61,6 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee update(Employee entity, Integer id) {
         Optional<Employee> optional = findById(id);
         if (optional.isPresent()) {
+            entity.setId(optional.get().getId());
             entity.setLastUpdatedAt(ZonedDateTime.now());
             return save(entity);
         }

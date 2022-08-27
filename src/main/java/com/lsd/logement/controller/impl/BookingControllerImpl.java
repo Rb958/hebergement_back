@@ -31,12 +31,12 @@ public class BookingControllerImpl implements BookingController {
     }
 
     @Override
-    @PostMapping
-    public ResponseEntity<ApiResponse<?>> save(@RequestBody BookingDTO bookingDTO) {
+    @PostMapping("/{userId}")
+    public ResponseEntity<ApiResponse<?>> save(@RequestBody BookingDTO bookingDTO, @PathVariable("userId") int userId) {
         try {
             Booking booking = bookingMapper.asEntity(bookingDTO);
             return ResponseEntity.ok(
-                    new ApiResponse<>(bookingMapper.asDTO(bookingService.save(booking)))
+                    new ApiResponse<>(bookingMapper.asDTO(bookingService.save(booking, userId)))
             );
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -140,6 +140,18 @@ public class BookingControllerImpl implements BookingController {
         try {
             return ResponseEntity.ok(
                     new ApiResponse<>(bookingMapper.asDTO(bookingService.cancelBooking(bookingId)))
+            );
+        }catch (Exception e) {
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
+    }
+
+    @Override
+    @GetMapping("/stats")
+    public ResponseEntity<ApiResponse<?>> bookingState() {
+        try {
+            return ResponseEntity.ok(
+                    new ApiResponse<>(bookingService.bookingStats())
             );
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));

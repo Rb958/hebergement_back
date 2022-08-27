@@ -10,12 +10,14 @@ public class DepenseDTO extends AbstractDTO<Integer> {
     private String demandeur;
     private Local local;
     private String categorie;
+    private String type;
     private StatutDepense status;
+    private String srcDepense;
     private int montant;
     private String commentaire;
     private String pieceJointe;
     private ZonedDateTime createdAt;
-    private ZonedDateTime LastUpdatedAt;
+    private ZonedDateTime lastUpdatedAt;
 
     public DepenseDTO() {
     }
@@ -85,11 +87,11 @@ public class DepenseDTO extends AbstractDTO<Integer> {
     }
 
     public void setLastUpdatedAt(java.time.ZonedDateTime LastUpdatedAt) {
-        this.LastUpdatedAt = LastUpdatedAt;
+        this.lastUpdatedAt = LastUpdatedAt;
     }
 
     public java.time.ZonedDateTime getLastUpdatedAt() {
-        return this.LastUpdatedAt;
+        return this.lastUpdatedAt;
     }
 
     public StatutDepense getStatus() {
@@ -98,5 +100,21 @@ public class DepenseDTO extends AbstractDTO<Integer> {
 
     public void setStatus(StatutDepense status) {
         this.status = status;
+    }
+
+    public String getSrcDepense() {
+        return srcDepense;
+    }
+
+    public void setSrcDepense(String srcDepense) {
+        this.srcDepense = srcDepense;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

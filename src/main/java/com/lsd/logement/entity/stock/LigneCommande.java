@@ -86,4 +86,12 @@ public class LigneCommande implements AbstractEntity<Integer> {
     public void setQteStock(int qteStock) {
         this.qteStock = qteStock;
     }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
 }

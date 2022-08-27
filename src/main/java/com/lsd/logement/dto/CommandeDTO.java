@@ -1,9 +1,6 @@
 package com.lsd.logement.dto;
 
-import com.lsd.logement.entity.stock.FournisseurEntreprise;
-import com.lsd.logement.entity.stock.FournisseurParticulier;
-import com.lsd.logement.entity.stock.LigneCommande;
-import com.lsd.logement.entity.stock.StatutCommande;
+import com.lsd.logement.entity.stock.*;
 
 import java.time.ZonedDateTime;
 import java.util.Date;

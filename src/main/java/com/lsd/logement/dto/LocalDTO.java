@@ -1,13 +1,11 @@
 package com.lsd.logement.dto;
 
-import com.lsd.logement.entity.infra.CategorieEnum;
-import com.lsd.logement.entity.infra.EtageEnum;
-import com.lsd.logement.entity.infra.LocateState;
-import com.lsd.logement.entity.infra.TypeLocal;
+import com.lsd.logement.entity.infra.*;
 import com.lsd.logement.entity.reservation.Booking;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class LocalDTO extends AbstractDTO<Integer> {
     private Integer id;
@@ -41,9 +39,9 @@ public class LocalDTO extends AbstractDTO<Integer> {
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
     private List<Booking> bookings;
+    private List<Immobilisation> immobilisations;
 
-    public LocalDTO() {
-    }
+    public LocalDTO() { }
 
     public void setId(Integer id) {
         this.id = id;
@@ -291,5 +289,13 @@ public class LocalDTO extends AbstractDTO<Integer> {
 
     public java.util.List<Booking> getBookings() {
         return this.bookings;
+    }
+
+    public List<Immobilisation> getImmobilisations() {
+        return immobilisations;
+    }
+
+    public void setImmobilisations(List<Immobilisation> immobilisations) {
+        this.immobilisations = immobilisations;
     }
 }

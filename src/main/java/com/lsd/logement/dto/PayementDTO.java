@@ -1,5 +1,6 @@
 package com.lsd.logement.dto;
 
+import com.lsd.logement.entity.reservation.Bail;
 import com.lsd.logement.entity.reservation.Booking;
 
 import java.time.ZonedDateTime;
@@ -12,7 +13,9 @@ public class PayementDTO extends AbstractDTO<Integer> {
     private int amount;
     private boolean isLast;
     private int rest;
+    private int discount;
     private Booking booking;
+    private Bail bail;
 
     public PayementDTO() {
     }
@@ -79,5 +82,21 @@ public class PayementDTO extends AbstractDTO<Integer> {
 
     public Booking getBooking() {
         return this.booking;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public Bail getBail() {
+        return bail;
+    }
+
+    public void setBail(Bail bail) {
+        this.bail = bail;
     }
 }

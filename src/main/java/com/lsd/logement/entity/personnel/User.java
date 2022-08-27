@@ -130,4 +130,22 @@ public class User implements AbstractEntity<Integer>, Serializable {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                ", connectedAt=" + connectedAt +
+                ", enabled=" + enabled +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", roles='" + roles + '\'' +
+                '}';
+    }
 }

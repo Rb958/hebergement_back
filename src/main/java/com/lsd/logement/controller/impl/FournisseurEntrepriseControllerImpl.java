@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/api/fournisseur-entreprise")
+@RequestMapping("/api/fournisseur/entreprise")
 @RestController
 public class FournisseurEntrepriseControllerImpl implements FournisseurEntrepriseController {
     private final FournisseurEntrepriseService fournisseurEntrepriseService;
@@ -27,6 +27,8 @@ public class FournisseurEntrepriseControllerImpl implements FournisseurEntrepris
         this.fournisseurEntrepriseMapper = fournisseurEntrepriseMapper;
     }
 
+    @Override
+    @PostMapping
     public ResponseEntity<ApiResponse<?>> save(@RequestBody FournisseurEntrepriseDTO fournisseurEntrepriseDTO) {
         try {
             FournisseurEntreprise fournisseurEntreprise = fournisseurEntrepriseMapper.asEntity(fournisseurEntrepriseDTO);

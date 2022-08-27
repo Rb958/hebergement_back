@@ -10,7 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,5 +73,20 @@ public class DepenseServiceImpl implements DepenseService {
             return save(entity);
         }
         return null;
+    }
+
+    @Override
+    public long countDepenseMois() {
+        ZonedDateTime startMonth = ZonedDateTime.now().with(TemporalAdjusters.firstDayOfMonth());
+        ZonedDateTime endMonth = ZonedDateTime.now().with(TemporalAdjusters.lastDayOfMonth());
+        Optional<Long> depense = repository.getDepenseOfMonth(startMonth, endMonth);
+        return depense.orElse(0L);
+    }
+
+    @Override
+    public long countDepenseAnnee() {
+        ZonedDateTime startYear = ZonedDateTime.now().with(TemporalAdjusters.firstDayOfYear());
+        ZonedDateTime endYear = ZonedDateTime.now().with(TemporalAdjusters.lastDayOfYear());
+        return repository.getDepenseOfMonth(startYear, endYear).orElse(0L);
     }
 }

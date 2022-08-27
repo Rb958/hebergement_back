@@ -27,6 +27,8 @@ public class StockControllerImpl implements StockController {
         this.stockMapper = stockMapper;
     }
 
+    @Override
+    @PostMapping
     public ResponseEntity<ApiResponse<?>> save(@RequestBody StockDTO stockDTO) {
         try {
             Stock stock = stockMapper.asEntity(stockDTO);

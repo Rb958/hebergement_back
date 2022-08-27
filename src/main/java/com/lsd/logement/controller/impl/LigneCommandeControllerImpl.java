@@ -27,6 +27,8 @@ public class LigneCommandeControllerImpl implements LigneCommandeController {
         this.ligneCommandeMapper = ligneCommandeMapper;
     }
 
+    @Override
+    @PostMapping
     public ResponseEntity<ApiResponse<?>> save(@RequestBody LigneCommandeDTO ligneCommandeDTO) {
         try {
             LigneCommande ligneCommande = ligneCommandeMapper.asEntity(ligneCommandeDTO);

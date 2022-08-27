@@ -27,6 +27,8 @@ public class CommandeControllerImpl implements CommandeController {
         this.commandeMapper = commandeMapper;
     }
 
+    @Override
+    @PostMapping
     public ResponseEntity<ApiResponse<?>> save(@RequestBody CommandeDTO commandeDTO) {
         try {
             Commande commande = commandeMapper.asEntity(commandeDTO);

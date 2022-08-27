@@ -19,6 +19,8 @@ public class Depense implements AbstractEntity<Integer> {
     private String categorie;
     @Enumerated(EnumType.STRING)
     private StatutDepense status;
+    private String srcDepense;
+    private String type;
     private int montant;
     @Column(columnDefinition = "TEXT")
     private String commentaire;
@@ -112,5 +114,21 @@ public class Depense implements AbstractEntity<Integer> {
 
     public void setStatus(StatutDepense status) {
         this.status = status;
+    }
+
+    public String getSrcDepense() {
+        return srcDepense;
+    }
+
+    public void setSrcDepense(String srcDepense) {
+        this.srcDepense = srcDepense;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

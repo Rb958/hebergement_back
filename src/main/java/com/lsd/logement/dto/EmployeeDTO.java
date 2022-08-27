@@ -10,6 +10,7 @@ public class EmployeeDTO extends AbstractDTO<Integer> {
     private String fonction;
     private int salaireMois;
     private String cni;
+    private String pjCni;
     private String stMarital;
     private String persContact;
     private String persTelephone;
@@ -113,5 +114,13 @@ public class EmployeeDTO extends AbstractDTO<Integer> {
 
     public java.time.ZonedDateTime getLastUpdatedAt() {
         return this.lastUpdatedAt;
+    }
+
+    public String getPjCni() {
+        return pjCni;
+    }
+
+    public void setPjCni(String pjCni) {
+        this.pjCni = pjCni;
     }
 }

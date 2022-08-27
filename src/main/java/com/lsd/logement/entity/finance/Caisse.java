@@ -1,12 +1,15 @@
 package com.lsd.logement.entity.finance;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lsd.logement.entity.AbstractEntity;
-import com.lsd.logement.entity.finance.StatutCaisse;
+import com.lsd.logement.entity.SousCaisse;
+import com.lsd.logement.entity.TransactionCaisse;
 import com.lsd.logement.entity.personnel.User;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Entity
 public class Caisse implements AbstractEntity<Integer> {
@@ -15,14 +18,24 @@ public class Caisse implements AbstractEntity<Integer> {
     private Integer id;
     private String nom;
     private String ref;
+    private boolean principal;
     @Enumerated(EnumType.STRING)
     private StatutCaisse status;
     private int solde;
     @ManyToOne()
     @JsonBackReference("caisse_user")
-    private User createdBy;
+    private User user;
+    private ZonedDateTime lastOpening;
+    private ZonedDateTime lastClosing;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
+    @OneToMany
+    @JsonManagedReference("caisse_transactions")
+    private List<TransactionCaisse> transactionCaisses;
+
+    @OneToMany(mappedBy = "caisse", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE} ,fetch = FetchType.EAGER)
+    @JsonManagedReference("sous_caisse")
+    private List<SousCaisse> sousCaisses;
 
     public Caisse() {}
 
@@ -86,5 +99,67 @@ public class Caisse implements AbstractEntity<Integer> {
 
     public void setStatus(StatutCaisse status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Caisse{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", ref='" + ref + '\'' +
+                ", status=" + status +
+                ", solde=" + solde +
+                ", createdBy=" + user +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                '}';
+    }
+
+    public ZonedDateTime getLastOpening() {
+        return lastOpening;
+    }
+
+    public void setLastOpening(ZonedDateTime lastOpening) {
+        this.lastOpening = lastOpening;
+    }
+
+    public ZonedDateTime getLastClosing() {
+        return lastClosing;
+    }
+
+    public void setLastClosing(ZonedDateTime lastClosing) {
+        this.lastClosing = lastClosing;
+    }
+
+    public List<TransactionCaisse> getTransactionCaisses() {
+        return transactionCaisses;
+    }
+
+    public void setTransactionCaisses(List<TransactionCaisse> transactionCaisses) {
+        this.transactionCaisses = transactionCaisses;
+    }
+
+    public List<SousCaisse> getSousCaisses() {
+        return sousCaisses;
+    }
+
+    public void setSousCaisses(List<SousCaisse> sousCaisses) {
+        this.sousCaisses = sousCaisses;
+    }
+
+    public boolean isPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(boolean principal) {
+        this.principal = principal;
     }
 }

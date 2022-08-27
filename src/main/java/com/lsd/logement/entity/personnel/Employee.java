@@ -19,6 +19,7 @@ public class Employee implements AbstractEntity<Integer> {
     private String fonction;
     private int salaireMois;
     private String cni;
+    private String pjCni;
     private String stMarital;
     private String persContact;
     private String persTelephone;
@@ -127,6 +128,14 @@ public class Employee implements AbstractEntity<Integer> {
     @Override
     public void setLastUpdatedAt(ZonedDateTime lastUpdatedAt) {
         this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    public String getPjCni() {
+        return pjCni;
+    }
+
+    public void setPjCni(String pjCni) {
+        this.pjCni = pjCni;
     }
 }
 

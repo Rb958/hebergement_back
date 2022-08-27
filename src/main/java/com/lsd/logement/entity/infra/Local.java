@@ -1,18 +1,19 @@
 package com.lsd.logement.entity.infra;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.lsd.logement.entity.converter.ImmobilisationConverter;
 import com.lsd.logement.entity.AbstractEntity;
 import com.lsd.logement.entity.reservation.Booking;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-public class Local implements AbstractEntity<Integer>, Serializable {
+public class Local implements AbstractEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -52,6 +53,9 @@ public class Local implements AbstractEntity<Integer>, Serializable {
     @OneToMany(mappedBy = "local")
     @JsonManagedReference("booking_local")
     private List<Booking> bookings;
+    @Convert(converter = ImmobilisationConverter.class)
+    @Column(columnDefinition = "json")
+    private List<Immobilisation> immobilisations;
 
     public Local() {
         bookings = new ArrayList<>();
@@ -330,5 +334,13 @@ public class Local implements AbstractEntity<Integer>, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, ville, pays, quartier, immeuble, typeLocal, nomLocal, numeroLocal, etage, localisation, categorie, fumeur, clim, piscine, wifi, animaux, chauffage, parkingIn, gadienJour, gardientNuit, groupeElect, nbrChambre, nbrDouche, ca, prix, typePrix, contrat, status, createdAt, lastUpdatedAt);
+    }
+
+    public List<Immobilisation> getImmobilisations() {
+        return immobilisations;
+    }
+
+    public void setImmobilisations(List<Immobilisation> immobilisations) {
+        this.immobilisations = immobilisations;
     }
 }

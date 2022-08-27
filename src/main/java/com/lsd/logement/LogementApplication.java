@@ -1,6 +1,9 @@
 package com.lsd.logement;
 
+import com.lsd.logement.entity.finance.Caisse;
+import com.lsd.logement.entity.finance.StatutCaisse;
 import com.lsd.logement.entity.personnel.User;
+import com.lsd.logement.service.CaisseService;
 import com.lsd.logement.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,11 +20,13 @@ import java.time.ZonedDateTime;
 @SpringBootApplication
 public class LogementApplication implements CommandLineRunner {
 	private final UserService userService;
+	private final CaisseService caisseService;
 
 	private final Logger logger = LogManager.getLogger(LogementApplication.class																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								);
 
-	public LogementApplication(UserService userService) {
+	public LogementApplication(UserService userService, CaisseService caisseService) {
 		this.userService = userService;
+		this.caisseService = caisseService;
 	}
 
 	public static void main(String[] args) {
@@ -50,6 +55,14 @@ public class LogementApplication implements CommandLineRunner {
 				logger.error(e.getMessage(), e);
 				e.printStackTrace();
 			}
+		}
+		if (!caisseService.hasPrincipalCaisse()){
+			Caisse caisse = new Caisse();
+			caisse.setNom("Caisse Principale");
+			caisse.setPrincipal(true);
+			caisse.setStatus(StatutCaisse.OUVERT);
+			caisse.setUser(null);
+			caisseService.save(caisse);
 		}
 	}
 

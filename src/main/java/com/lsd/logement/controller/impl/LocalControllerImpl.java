@@ -5,6 +5,7 @@ import com.lsd.logement.dto.LocalDTO;
 import com.lsd.logement.entity.infra.Local;
 import com.lsd.logement.mapper.LocalMapper;
 import com.lsd.logement.model.ApiResponse;
+import com.lsd.logement.model.LocalAvailableSearch;
 import com.lsd.logement.service.LocalService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -102,6 +103,30 @@ public class LocalControllerImpl implements LocalController {
             Local local = localMapper.asEntity(localDTO);
             return ResponseEntity.ok(
                     new ApiResponse<>(localMapper.asDTO(localService.update(local, id)))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
+    }
+
+    @Override
+    @PostMapping("/search/meuble/available")
+    public ResponseEntity<ApiResponse<?>> findAvailableLocal(LocalAvailableSearch search) {
+        try {
+            return ResponseEntity.ok(
+                    new ApiResponse<>(localMapper.asDTOList(localService.findLocalAvailable(search)))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
+    }
+
+    @Override
+    @PostMapping("/search/non-meuble/available")
+    public ResponseEntity<ApiResponse<?>> findAvailableLocalNonMeuble(LocalAvailableSearch search) {
+        try {
+            return ResponseEntity.ok(
+                    new ApiResponse<>(localMapper.asDTOList(localService.findLocalAvailableNonMeuble(search)))
             );
         }catch (Exception e){
             return ResponseEntity.ok(ApiResponse.from(e));

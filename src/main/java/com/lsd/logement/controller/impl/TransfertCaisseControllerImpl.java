@@ -27,6 +27,8 @@ public class TransfertCaisseControllerImpl implements TransfertCaisseController 
         this.transfertCaisseMapper = transfertCaisseMapper;
     }
 
+    @Override
+    @PostMapping
     public ResponseEntity<ApiResponse<?>> save(@RequestBody TransfertCaisseDTO transfertCaisseDTO) {
         try {
             TransfertCaisse transfertCaisse = transfertCaisseMapper.asEntity(transfertCaisseDTO);

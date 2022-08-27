@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Journal de Caisse</title>
+    <style>
+        .row{
+            display: flex;
+            justify-content: space-between;
+        }
+        table{
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        th{
+            padding: 10px 5px;
+            border: 1px solid black;
+        }
+        td{
+            border: 1px solid black;
+            padding: 10px 5px;
+            text-align: center;
+        }
+        tr:nth-of-type(2n+1){
+            background-color: rgba(0,0,0,0.2);
+        }
+        .title{
+            font-size: 1.3rem;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .value{
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .pt-4{
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="caisse-info">
+            <div class="info row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="title">Responsable</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="value">{lastname} {firstname}</span>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-md-6">
+                            <span class="title">Solde</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="value">{solde} FCFA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="title">Date d'ouverture</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="value">{lastOpening}</span>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-md-6">
+                            <span class="title">Date de fermeture</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="value">{lastClosing}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 style="margin-top: 20px;">Résumé par moyen de paiement</h4>
+        <div class="table-content">
+            <table>
+                <thead>
+                <th>#</th>
+                <th>Mode de paiement</th>
+                <th>Total</th>
+                <th>Solde d'ouverture</th>
+                <th>solde de fermeture</th>
+                <th>Difference</th>
+                </thead>
+                {table_content}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

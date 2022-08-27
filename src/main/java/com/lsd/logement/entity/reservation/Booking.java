@@ -13,6 +13,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,11 +21,13 @@ public class Booking implements AbstractEntity<Integer>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private ZonedDateTime dateReservation;
+    @Temporal(TemporalType.DATE)
+    private Date dateReservation;
     private String nom;
     private String prenom;
     private String telephone;
-    private ZonedDateTime validite;
+    @Temporal(TemporalType.DATE)
+    private Date validite;
     private String numReservation;
     private int sejour;
     @Enumerated(EnumType.STRING)
@@ -63,11 +66,11 @@ public class Booking implements AbstractEntity<Integer>, Serializable {
         this.id = id;
     }
 
-    public ZonedDateTime getDateReservation() {
+    public Date getDateReservation() {
         return dateReservation;
     }
 
-    public void setDateReservation(ZonedDateTime dateReservation) {
+    public void setDateReservation(Date dateReservation) {
         this.dateReservation = dateReservation;
     }
 
@@ -95,11 +98,11 @@ public class Booking implements AbstractEntity<Integer>, Serializable {
         this.telephone = telephone;
     }
 
-    public ZonedDateTime getValidite() {
+    public Date getValidite() {
         return validite;
     }
 
-    public void setValidite(ZonedDateTime validite) {
+    public void setValidite(Date validite) {
         this.validite = validite;
     }
 

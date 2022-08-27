@@ -27,6 +27,8 @@ public class DepenseControllerImpl implements DepenseController {
         this.depenseMapper = depenseMapper;
     }
 
+    @Override
+    @PostMapping
     public ResponseEntity<ApiResponse<?>> save(@RequestBody DepenseDTO depenseDTO) {
         try {
             Depense depense = depenseMapper.asEntity(depenseDTO);

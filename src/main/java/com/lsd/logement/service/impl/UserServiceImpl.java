@@ -44,6 +44,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User entity) {
         entity.setPassword(this.passwordEncoder.encode(entity.getPassword()));
+        if (entity.getRoles() == null || entity.getRoles().isEmpty()){
+            entity.setRoles("ROLE_USER");
+        }
         return repository.save(entity);
     }
 

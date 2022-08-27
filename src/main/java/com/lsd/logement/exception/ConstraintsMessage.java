@@ -1,9 +1,7 @@
 package com.lsd.logement.exception;
 
 public enum ConstraintsMessage implements BaseExceptionMessage {
-    SCHOOL_APPROVAL_NUM_EXISTS(409101, "School approval number already exists"),
-    SCHOOL_NAME_EXISTS(409102, "School name already exists"),
-    SCHOOL_ID_EXISTS(409100, "School id already exists")
+    LOCAL_IS_NOT_FREE(409101, "Ce local n'est pas libre pour l'instant")
     ;
     private final int code;
     private final String message;

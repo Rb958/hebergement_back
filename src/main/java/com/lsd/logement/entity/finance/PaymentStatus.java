@@ -4,5 +4,6 @@ public enum PaymentStatus {
     PARTIELLE,
     PAYE,
     IMPAYE,
+    REMBOURSSÉ,
     CREDIT
 }

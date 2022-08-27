@@ -2,5 +2,5 @@ package com.lsd.logement.entity.finance;
 
 public enum StatutCaisse {
     OUVERT,
-    FERME
+    ATTENTE, ATTENTE_FERMETURE, FERME
 }

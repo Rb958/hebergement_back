@@ -10,17 +10,13 @@ import com.lsd.logement.entity.finance.Payement;
 import com.lsd.logement.entity.finance.PaymentStatus;
 import com.lsd.logement.exception.GeneralBaseException;
 import com.lsd.logement.exception.NotFoundMessage;
-import com.lsd.logement.service.BookingService;
-import com.lsd.logement.service.LocalService;
-import com.lsd.logement.service.LocataireParticulierService;
-import com.lsd.logement.service.LocataireSocieteService;
+import com.lsd.logement.service.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,54 +29,38 @@ public class BookingServiceImpl implements BookingService {
     private final LocataireParticulierService locatairesPartService;
     private final LocataireSocieteService locataireSocieteService;
     private final PayementRepository payementRepository;
+    private final CaisseService caisseService;
 
-    public BookingServiceImpl(BookingRepository repository, LocalService localService, LocataireParticulierService locatairesPartService, LocataireSocieteService locataireSocieteService, PayementRepository payementRepository) {
+    public BookingServiceImpl(BookingRepository repository, LocalService localService, LocataireParticulierService locatairesPartService, LocataireSocieteService locataireSocieteService, PayementRepository payementRepository, CaisseService caisseService) {
         this.repository = repository;
         this.localService = localService;
         this.locatairesPartService = locatairesPartService;
         this.locataireSocieteService = locataireSocieteService;
         this.payementRepository = payementRepository;
+        this.caisseService = caisseService;
     }
 
     @Override
-    public Booking save(Booking entity) {
+    public Booking save(Booking entity, Integer userId) {
+        this.localService.checkLocal(entity.getLocal(), entity.getDateReservation());
         ZonedDateTime currentDate = ZonedDateTime.now();
         entity.setCreatedAt(currentDate);
         entity.setLastUpdatedAt(currentDate);
-        entity.setDateReservation(currentDate);
-        Random random = new Random();
-        entity.setNumReservation("BK-" + String.valueOf(Math.abs(random.nextLong())));
+        entity.setNumReservation(genCode());
         entity.getPayements().forEach(payement -> payement.setBooking(entity));
-        computeValidity(entity);
-        processPayment(entity);
+        processPayment(entity, userId);
         processLocalChanges(entity, true, LocateState.OCCUPE);
         return repository.save(entity);
     }
 
-    private Booking computeValidity(Booking entity) {
-        int period = entity.getSejour();
-        ZonedDateTime validityDate = null;
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(ZoneId.systemDefault()));
-        switch(entity.getPreriodUnit()){
-            case HEURE:
-                calendar.add(Calendar.HOUR, period);
-                validityDate = ZonedDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
-                break;
-            case JOURS:
-                calendar.add(Calendar.DAY_OF_MONTH, period);
-                validityDate = ZonedDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
-                break;
-            case MOIS:
-                calendar.add(Calendar.MONTH, period);
-                validityDate = ZonedDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
-                break;
-            case ANNEE:
-                calendar.add(Calendar.YEAR, period);
-                validityDate = ZonedDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
-                break;
-        }
-        entity.setValidite(validityDate);
-        return entity;
+    private String genCode() {
+        ZonedDateTime currentDate = ZonedDateTime.now();
+        Random rnd = new Random();
+        return "BK" +
+                currentDate.getYear() +
+                currentDate.getMonth() +
+                currentDate.getDayOfMonth() +
+                rnd.nextInt(999);
     }
 
     private void processLocalChanges(Booking entity, boolean addCa, LocateState status) {
@@ -96,7 +76,7 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
-    private void processPayment(Booking entity) {
+    private void processPayment(Booking entity, Integer userId) {
         if (!entity.getPayements().isEmpty()){
             Payement payement = entity.getPayements().get(0);
             if (payement.getAmount() <= 0){
@@ -112,6 +92,7 @@ public class BookingServiceImpl implements BookingService {
                     payement.setLast(false);
                     entity.setPaymentStatus(PaymentStatus.PARTIELLE);
                 }
+                caisseService.pay(payement, userId);
             }
             List<Payement> payments = new ArrayList<>();
             payments.add(payement);
@@ -131,6 +112,11 @@ public class BookingServiceImpl implements BookingService {
         return booking.getSejour() * localprice;
     }
 
+
+    @Override
+    public Booking save(Booking entity) {
+        return null;
+    }
 
     @Override
     public List<Booking> save(List<Booking> entities) {
@@ -208,7 +194,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Map<String, Object> bookingStats() {
-        return repository.bookingStat();
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("closed", repository.countBookingWithStatus(BookingState.CLOTURER));
+        stats.put("canceled", repository.countBookingWithStatus(BookingState.ANNULE));
+        stats.put("confirmed", repository.countBookingWithStatus(BookingState.CONFIRME));
+        stats.put("annonymous", repository.countBookingWithStatus(BookingState.ANONYMOUS));
+        return stats;
     }
 
     @Override
@@ -220,8 +211,14 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = bookingOpt.get();
         booking.setLastUpdatedAt(ZonedDateTime.now());
         booking.setStatut(BookingState.ANNULE);
+        booking.setPaymentStatus(PaymentStatus.REMBOURSSÉ);
         processLocalChanges(booking, false, LocateState.LIBRE);
         return repository.save(booking);
+    }
+
+    @Override
+    public int countAllAvailable() {
+        return repository.countAllByValiditeGreaterThanEqualAndStatutIsNot(new Date(), BookingState.CLOTURER);
     }
 
     private int sumAmount(Booking booking){

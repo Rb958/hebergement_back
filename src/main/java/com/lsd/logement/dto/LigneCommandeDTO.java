@@ -1,5 +1,6 @@
 package com.lsd.logement.dto;
 
+import com.lsd.logement.entity.stock.Article;
 import com.lsd.logement.entity.stock.Commande;
 
 import java.time.ZonedDateTime;
@@ -7,14 +8,14 @@ import java.time.ZonedDateTime;
 public class LigneCommandeDTO extends AbstractDTO<Integer> {
     private Integer id;
     private Commande commande;
+    private Article article;
     private int qte;
     private int prixUnitaire;
     private int qteStock;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
 
-    public LigneCommandeDTO() {
-    }
+    public LigneCommandeDTO() {}
 
     public void setId(Integer id) {
         this.id = id;
@@ -70,5 +71,13 @@ public class LigneCommandeDTO extends AbstractDTO<Integer> {
 
     public java.time.ZonedDateTime getLastUpdatedAt() {
         return this.lastUpdatedAt;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }

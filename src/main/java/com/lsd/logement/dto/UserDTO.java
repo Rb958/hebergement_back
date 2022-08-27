@@ -114,4 +114,22 @@ public class UserDTO extends AbstractDTO<Integer> {
     public String getRoles() {
         return this.roles;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                ", connectedAt=" + connectedAt +
+                ", enabled=" + enabled +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", roles='" + roles + '\'' +
+                '}';
+    }
 }

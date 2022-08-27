@@ -9,15 +9,16 @@ import com.lsd.logement.entity.finance.PaymentStatus;
 import com.lsd.logement.entity.reservation.PeriodUnit;
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class BookingDTO extends AbstractDTO<Integer> {
     private Integer id;
-    private ZonedDateTime dateReservation;
+    private Date dateReservation;
     private String nom;
     private String prenom;
     private String telephone;
-    private ZonedDateTime validite;
+    private Date validite;
     private String numReservation;
     private int sejour;
     private BookingState statut;
@@ -41,11 +42,11 @@ public class BookingDTO extends AbstractDTO<Integer> {
         return this.id;
     }
 
-    public void setDateReservation(java.time.ZonedDateTime dateReservation) {
+    public void setDateReservation(java.util.Date dateReservation) {
         this.dateReservation = dateReservation;
     }
 
-    public java.time.ZonedDateTime getDateReservation() {
+    public java.util.Date getDateReservation() {
         return this.dateReservation;
     }
 
@@ -73,11 +74,11 @@ public class BookingDTO extends AbstractDTO<Integer> {
         return this.telephone;
     }
 
-    public void setValidite(java.time.ZonedDateTime validite) {
+    public void setValidite(java.util.Date validite) {
         this.validite = validite;
     }
 
-    public java.time.ZonedDateTime getValidite() {
+    public java.util.Date getValidite() {
         return this.validite;
     }
 

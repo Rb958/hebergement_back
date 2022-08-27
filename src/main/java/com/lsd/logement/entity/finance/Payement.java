@@ -2,6 +2,7 @@ package com.lsd.logement.entity.finance;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.lsd.logement.entity.AbstractEntity;
+import com.lsd.logement.entity.reservation.Bail;
 import com.lsd.logement.entity.reservation.Booking;
 
 import javax.persistence.*;
@@ -20,9 +21,13 @@ public class Payement implements AbstractEntity<Integer>, Serializable {
     private int amount;
     private boolean isLast;
     private int rest;
+    private int discount;
     @ManyToOne
     @JsonBackReference("payment_booking")
-    Booking booking;
+    private Booking booking;
+    @ManyToOne
+    @JsonBackReference("bail_payment")
+    private Bail bail;
 
     public Payement() {
         this.isLast = false;
@@ -115,5 +120,21 @@ public class Payement implements AbstractEntity<Integer>, Serializable {
                 ", rest=" + rest +
                 ", booking=" + booking.getSejour() +
                 '}';
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public Bail getBail() {
+        return bail;
+    }
+
+    public void setBail(Bail bail) {
+        this.bail = bail;
     }
 }
