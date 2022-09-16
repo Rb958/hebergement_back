@@ -2,6 +2,9 @@ package com.lsd.logement.service.impl;
 
 import com.lsd.logement.dao.PayementRepository;
 import com.lsd.logement.entity.finance.Payement;
+import com.lsd.logement.entity.finance.PaymentStatus;
+import com.lsd.logement.exception.ConstraintsMessage;
+import com.lsd.logement.exception.GeneralBaseException;
 import com.lsd.logement.service.PayementService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,7 +26,15 @@ public class PayementServiceImpl implements PayementService {
 
     @Override
     public Payement save(Payement entity) {
+        checkStatutPayment(entity);
         return repository.save(entity);
+    }
+
+    private void checkStatutPayment(Payement entity) {
+        if (entity.getBooking() != null && (entity.getBooking().getPaymentStatus() != PaymentStatus.PARTIELLE || entity.getBooking().getPaymentStatus() != PaymentStatus.IMPAYE)){
+            throw new GeneralBaseException(ConstraintsMessage.MISMATCH_STATUS);
+        }
+
     }
 
     @Override

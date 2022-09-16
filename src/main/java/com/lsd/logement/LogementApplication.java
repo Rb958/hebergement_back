@@ -4,6 +4,7 @@ import com.lsd.logement.entity.finance.Caisse;
 import com.lsd.logement.entity.finance.StatutCaisse;
 import com.lsd.logement.entity.personnel.User;
 import com.lsd.logement.service.CaisseService;
+import com.lsd.logement.service.FileStorageService;
 import com.lsd.logement.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,12 +22,14 @@ import java.time.ZonedDateTime;
 public class LogementApplication implements CommandLineRunner {
 	private final UserService userService;
 	private final CaisseService caisseService;
+	private final FileStorageService fileStorageService;
 
 	private final Logger logger = LogManager.getLogger(LogementApplication.class																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								);
 
-	public LogementApplication(UserService userService, CaisseService caisseService) {
+	public LogementApplication(UserService userService, CaisseService caisseService, FileStorageService fileStorageService) {
 		this.userService = userService;
 		this.caisseService = caisseService;
+		this.fileStorageService = fileStorageService;
 	}
 
 	public static void main(String[] args) {
@@ -35,6 +38,7 @@ public class LogementApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		fileStorageService.init();
 		if (!userService.checkAdmin()){
 			User defaultUser = new User();
 			defaultUser.setFirstname("John");

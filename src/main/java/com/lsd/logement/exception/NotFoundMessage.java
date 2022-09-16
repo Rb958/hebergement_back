@@ -6,7 +6,9 @@ public enum NotFoundMessage implements BaseExceptionMessage {
     LOCATAIRE_NOT_FOUND(404102, "Locataire Introuvable"),
     LOCAL_NOT_FOUND(404103, "Locale introuvable"),
     CAISSE_NOT_FOUND(404104, "Caisse introuvable"),
-    BAIL_NOT_FOUND(404105, "Contract de bail introuvable");
+    BAIL_NOT_FOUND(404105, "Contract de bail introuvable"),
+    DEPENSE_NOT_FOUND(404106, "Depense introuvable"),
+    USER_NOT_FOUND(404107, "Utilisateur introuvable");
 
     private final int code;
     private final String message;

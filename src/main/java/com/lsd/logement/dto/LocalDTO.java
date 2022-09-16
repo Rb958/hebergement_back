@@ -38,7 +38,7 @@ public class LocalDTO extends AbstractDTO<Integer> {
     private LocateState status;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
-    private List<Booking> bookings;
+//    private List<Booking> bookings;
     private List<Immobilisation> immobilisations;
 
     public LocalDTO() { }
@@ -283,13 +283,13 @@ public class LocalDTO extends AbstractDTO<Integer> {
         return this.lastUpdatedAt;
     }
 
-    public void setBookings(java.util.List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+//    public void setBookings(java.util.List<Booking> bookings) {
+//        this.bookings = bookings;
+//    }
 
-    public java.util.List<Booking> getBookings() {
-        return this.bookings;
-    }
+//    public java.util.List<Booking> getBookings() {
+//        return this.bookings;
+//    }
 
     public List<Immobilisation> getImmobilisations() {
         return immobilisations;

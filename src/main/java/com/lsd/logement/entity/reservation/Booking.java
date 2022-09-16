@@ -10,14 +10,13 @@ import com.lsd.logement.entity.finance.PaymentStatus;
 import com.lsd.logement.entity.infra.Local;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Booking implements AbstractEntity<Integer>, Serializable {
+public class Booking implements AbstractEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -4,6 +4,7 @@ import com.lsd.logement.dao.CaisseRepository;
 import com.lsd.logement.dao.TransactionCaisseRepository;
 import com.lsd.logement.entity.SousCaisse;
 import com.lsd.logement.entity.TransactionCaisse;
+import com.lsd.logement.entity.TransactionTypeEnum;
 import com.lsd.logement.entity.finance.Caisse;
 import com.lsd.logement.entity.finance.Payement;
 import com.lsd.logement.entity.finance.StatutCaisse;
@@ -24,9 +25,11 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import javax.transaction.Transactional;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +52,7 @@ public class CaisseServiceImpl implements CaisseService {
         entity.setCreatedAt(currenDateTime);
         entity.setLastUpdatedAt(currenDateTime);
         entity.setStatus(StatutCaisse.FERME);
+        entity.setRef("CS-" + (new Date()).toInstant().toEpochMilli());
         entity.setSolde(0);
         List<SousCaisse> tmp = createSousCaisse(entity);
         entity.setSousCaisses(tmp);
@@ -296,5 +300,39 @@ public class CaisseServiceImpl implements CaisseService {
         } catch (IOException e) {
             throw new Exception(e.getMessage());
         }
+    }
+
+
+
+    @Override
+    public void debitPrincipal(int montant) {
+        Optional<Caisse> optional = repository.findPrincipal();
+        if (!optional.isPresent()){
+            throw new GeneralBaseException(NotFoundMessage.CAISSE_NOT_FOUND);
+        }
+        Caisse principal = optional.get();
+        TransactionCaisse transactionCaisse = new TransactionCaisse();
+        transactionCaisse.setAmount(montant);
+        transactionCaisse.setType(TransactionTypeEnum.DEBIT);
+        transactionCaisse.setCaisse(principal);
+        transactionCaisse.setPaymentMethod("Espèces");
+        transactionCaisseRepository.save(transactionCaisse);
+        principal.setSolde(principal.getSolde() + montant);
+    }
+
+    @Override
+    public void creditPrincipal(int montant) {
+        Optional<Caisse> optional = repository.findPrincipal();
+        if (!optional.isPresent()){
+            throw new GeneralBaseException(NotFoundMessage.CAISSE_NOT_FOUND);
+        }
+        Caisse principal = optional.get();
+        TransactionCaisse transactionCaisse = new TransactionCaisse();
+        transactionCaisse.setAmount(montant);
+        transactionCaisse.setType(TransactionTypeEnum.CREDIT);
+        transactionCaisse.setCaisse(principal);
+        transactionCaisse.setPaymentMethod("Espèces");
+        transactionCaisseRepository.save(transactionCaisse);
+        principal.setSolde(principal.getSolde() + montant);
     }
 }

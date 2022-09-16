@@ -86,6 +86,9 @@ public class User implements AbstractEntity<Integer>, Serializable {
     public boolean isEnabled() {
         return enabled;
     }
+    public boolean getEnabled(){
+        return this.enabled;
+    }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;

@@ -54,6 +54,11 @@ public class LocalServiceImpl implements LocalService {
 
     @Override
     public List<Local> save(List<Local> entities) {
+        entities.forEach(entity -> {
+            ZonedDateTime currentDate = ZonedDateTime.now();
+            entity.setCreatedAt(currentDate);
+            entity.setLastUpdatedAt(currentDate);
+        });
         return (List<Local>) repository.saveAll(entities);
     }
 
@@ -143,6 +148,7 @@ public class LocalServiceImpl implements LocalService {
     }
 
     private boolean isFree(Integer id, Date startDate) {
-        return repository.localIsFree(id, startDate, BookingState.CLOTURER);
+        Optional<Local> optional = repository.localIsFree(id, startDate, BookingState.CLOTURER);
+        return optional.isPresent();
     }
 }

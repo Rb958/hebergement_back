@@ -29,7 +29,7 @@ public class Caisse implements AbstractEntity<Integer> {
     private ZonedDateTime lastClosing;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
-    @OneToMany
+    @OneToMany(mappedBy = "caisse")
     @JsonManagedReference("caisse_transactions")
     private List<TransactionCaisse> transactionCaisses;
 

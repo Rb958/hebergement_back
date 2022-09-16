@@ -8,8 +8,6 @@ import com.lsd.logement.entity.client.LocataireSociete;
 import com.lsd.logement.entity.finance.Payement;
 import com.lsd.logement.entity.finance.PaymentStatus;
 import com.lsd.logement.entity.infra.Local;
-import com.lsd.logement.entity.reservation.BookingState;
-import com.lsd.logement.entity.reservation.PeriodUnit;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;

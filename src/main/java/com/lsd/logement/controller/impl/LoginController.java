@@ -27,7 +27,6 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<?>> authenticateUser(@Valid @RequestBody UserDTO utilisateur){
         try {
-            System.out.println(utilisateur.getUsername());
             return ResponseEntity.ok(new ApiResponse<>(this.userService.login(userMapper.asEntity(utilisateur))));
         }catch(Exception e){
             return ResponseEntity.ok().body(

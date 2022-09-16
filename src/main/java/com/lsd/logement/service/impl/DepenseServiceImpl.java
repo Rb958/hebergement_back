@@ -3,6 +3,9 @@ package com.lsd.logement.service.impl;
 import com.lsd.logement.dao.DepenseRepository;
 import com.lsd.logement.entity.finance.Depense;
 import com.lsd.logement.entity.finance.StatutDepense;
+import com.lsd.logement.exception.GeneralBaseException;
+import com.lsd.logement.exception.NotFoundMessage;
+import com.lsd.logement.service.CaisseService;
 import com.lsd.logement.service.DepenseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -10,9 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +23,11 @@ import java.util.Optional;
 public class DepenseServiceImpl implements DepenseService {
     private final DepenseRepository repository;
 
-    public DepenseServiceImpl(DepenseRepository repository) {
+    private final CaisseService caisseService;
+
+    public DepenseServiceImpl(DepenseRepository repository, CaisseService caisseService) {
         this.repository = repository;
+        this.caisseService = caisseService;
     }
 
     @Override
@@ -88,5 +92,19 @@ public class DepenseServiceImpl implements DepenseService {
         ZonedDateTime startYear = ZonedDateTime.now().with(TemporalAdjusters.firstDayOfYear());
         ZonedDateTime endYear = ZonedDateTime.now().with(TemporalAdjusters.lastDayOfYear());
         return repository.getDepenseOfMonth(startYear, endYear).orElse(0L);
+    }
+
+    @Override
+    @Transactional
+    public void validate(Depense depense) {
+        Optional<Depense> optional = repository.findById(depense.getId());
+        if (!optional.isPresent()){
+            throw new GeneralBaseException(NotFoundMessage.DEPENSE_NOT_FOUND);
+        }
+        Depense tmp = optional.get();
+        tmp.setStatus(StatutDepense.VALIDE);
+        tmp.setLastUpdatedAt(ZonedDateTime.now());
+        this.caisseService.debitPrincipal(depense.getMontant());
+        repository.save(depense);
     }
 }

@@ -73,9 +73,7 @@ public class BailControllerImpl implements BailController {
     @GetMapping
     public ResponseEntity<ApiResponse<?>> list() {
         try {
-            return ResponseEntity.ok(
-                    new ApiResponse<>(bailMapper.asDTOList(bailService.findAll()))
-            );
+            return ResponseEntity.ok(new ApiResponse<>(bailMapper.asDTOList(bailService.findAll())));
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));
         }
@@ -140,7 +138,7 @@ public class BailControllerImpl implements BailController {
         try {
             return ResponseEntity.ok(
                     new ApiResponse<>(bailMapper.asDTO(bailService.cancelBail(bailId)))
-            );
+);
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));
         }

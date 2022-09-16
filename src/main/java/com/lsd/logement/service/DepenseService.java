@@ -6,4 +6,6 @@ public interface DepenseService extends GenericService<Depense, Integer> {
     long countDepenseMois();
 
     long countDepenseAnnee();
+
+    void validate(Depense depense);
 }

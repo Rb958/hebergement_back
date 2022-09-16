@@ -14,6 +14,8 @@ public class TransactionCaisse implements AbstractEntity<Integer>{
     private Integer id;
     private int amount;
     private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    private TransactionTypeEnum type;
     @ManyToOne
     @JsonBackReference("caisse_transactions")
     private Caisse caisse;
@@ -77,5 +79,13 @@ public class TransactionCaisse implements AbstractEntity<Integer>{
 
     public void setCaisse(Caisse caisse) {
         this.caisse = caisse;
+    }
+
+    public TransactionTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(TransactionTypeEnum type) {
+        this.type = type;
     }
 }

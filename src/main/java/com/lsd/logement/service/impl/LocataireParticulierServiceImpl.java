@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +24,19 @@ public class LocataireParticulierServiceImpl implements LocataireParticulierServ
 
     @Override
     public LocataireParticulier save(LocataireParticulier entity) {
+        ZonedDateTime currentDate = ZonedDateTime.now();
+        entity.setCreatedAt(currentDate);
+        entity.setLastUpdatedAt(currentDate);
         return repository.save(entity);
     }
 
     @Override
     public List<LocataireParticulier> save(List<LocataireParticulier> entities) {
+        entities.forEach(entity -> {
+            ZonedDateTime currentDate = ZonedDateTime.now();
+            entity.setCreatedAt(currentDate);
+            entity.setLastUpdatedAt(currentDate);
+        });
         return (List<LocataireParticulier>) repository.saveAll(entities);
     }
 

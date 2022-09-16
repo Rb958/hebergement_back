@@ -78,6 +78,18 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
+    @PatchMapping("/enable")
+    public ResponseEntity<ApiResponse<?>> enable(Integer id) {
+        try {
+            return ResponseEntity.ok(
+                    new ApiResponse<>(userMapper.asDTO(userService.enableUser(id)))
+            );
+        }catch (Exception e){
+            return ResponseEntity.ok(ApiResponse.from(e));
+        }
+    }
+
+    @Override
     @GetMapping("/page-query")
     public ResponseEntity<ApiResponse<?>> pageQuery(Pageable pageable) {
         try {
@@ -92,6 +104,8 @@ public class UserControllerImpl implements UserController {
             return ResponseEntity.ok(ApiResponse.from(e));
         }
     }
+
+
 
     @Override
     @PutMapping("/{id}")

@@ -17,4 +17,8 @@ public interface CaisseRepository extends PagingAndSortingRepository<Caisse, Int
     Optional<Caisse> findByUser_Id(int id);
 
     boolean existsByPrincipalIsTrue();
+
+    @Query("select c from Caisse c where c.principal = true")
+    Optional<Caisse> findPrincipal();
+
 }

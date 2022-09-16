@@ -1,16 +1,13 @@
 package com.lsd.logement.entity.infra;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lsd.logement.entity.converter.ImmobilisationConverter;
 import com.lsd.logement.entity.AbstractEntity;
-import com.lsd.logement.entity.reservation.Booking;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Local implements AbstractEntity<Integer> {
@@ -50,15 +47,12 @@ public class Local implements AbstractEntity<Integer> {
     private LocateState status;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
-    @OneToMany(mappedBy = "local")
-    @JsonManagedReference("booking_local")
-    private List<Booking> bookings;
     @Convert(converter = ImmobilisationConverter.class)
     @Column(columnDefinition = "json")
     private List<Immobilisation> immobilisations;
 
     public Local() {
-        bookings = new ArrayList<>();
+        this.immobilisations = new ArrayList<>();
     }
 
     @Override
@@ -313,14 +307,6 @@ public class Local implements AbstractEntity<Integer> {
 
     public void decreaseCaWith(int amount){
         this.ca -= amount;
-    }
-
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
     }
 
     @Override

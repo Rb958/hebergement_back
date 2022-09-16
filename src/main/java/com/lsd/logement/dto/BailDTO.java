@@ -19,6 +19,7 @@ public class BailDTO extends AbstractDTO<Integer> {
     private String numReservation;
     private BookingState statut;
     private int sejour;
+    private int echeance;
     private PeriodUnit preriodUnit;
     private PaymentStatus paymentStatus;
     private ZonedDateTime createdAt;
@@ -141,5 +142,13 @@ public class BailDTO extends AbstractDTO<Integer> {
 
     public java.util.List<com.lsd.logement.entity.finance.Payement> getPayements() {
         return this.payements;
+    }
+
+    public int getEcheance() {
+        return echeance;
+    }
+
+    public void setEcheance(int echeance) {
+        this.echeance = echeance;
     }
 }

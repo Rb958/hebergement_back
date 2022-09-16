@@ -23,4 +23,8 @@ public interface CaisseService extends GenericService<Caisse, Integer> {
     boolean hasPrincipalCaisse();
 
     InputStream generatePdf(Integer id) throws Exception;
+
+    void debitPrincipal(int montant);
+
+    void creditPrincipal(int montant);
 }

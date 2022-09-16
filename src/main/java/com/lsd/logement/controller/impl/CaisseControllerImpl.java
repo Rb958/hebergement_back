@@ -2,9 +2,7 @@ package com.lsd.logement.controller.impl;
 
 import com.lsd.logement.controller.CaisseController;
 import com.lsd.logement.dto.CaisseDTO;
-import com.lsd.logement.dto.CaisseDTO;
 import com.lsd.logement.entity.finance.Caisse;
-import com.lsd.logement.entity.stock.Article;
 import com.lsd.logement.mapper.CaisseMapper;
 import com.lsd.logement.model.ApiResponse;
 import com.lsd.logement.service.CaisseService;

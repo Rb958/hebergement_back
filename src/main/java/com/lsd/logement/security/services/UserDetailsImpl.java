@@ -31,7 +31,8 @@ public class UserDetailsImpl implements UserDetails {
 		this.password = user.getPassword();
 		this.email = user.getEmail();
 		this.authorities = authorities;
-		this.enable = user.isEnabled();
+		System.out.println("Enable : " + user.getEnabled());
+		this.enable = user.getEnabled();
 	}
 
 	public static UserDetailsImpl build(User user) {

@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Repository
 public interface LocalRepository extends PagingAndSortingRepository<Local, Integer> {
@@ -20,5 +21,5 @@ public interface LocalRepository extends PagingAndSortingRepository<Local, Integ
     int countAllByCategorie(CategorieEnum categorieEnum);
 
     @Query("Select l from Local l where l.id = :id and l not in (select b.local from Booking b where b.validite > :startDate or b.statut <> :state) and l not in (select b.local from Bail b where b.validite > :startDate or b.statut <> :state)")
-    boolean localIsFree(@Param("id") Integer id, @Param("startDate") Date startDate, BookingState state);
+    Optional<Local> localIsFree(@Param("id") Integer id, @Param("startDate") Date startDate, BookingState state);
 }

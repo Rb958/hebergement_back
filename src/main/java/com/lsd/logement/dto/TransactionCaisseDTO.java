@@ -1,5 +1,6 @@
 package com.lsd.logement.dto;
 
+import com.lsd.logement.entity.TransactionTypeEnum;
 import com.lsd.logement.entity.finance.Caisse;
 import java.time.ZonedDateTime;
 
@@ -8,6 +9,7 @@ public class TransactionCaisseDTO extends AbstractDTO<Integer> {
     private int amount;
     private String paymentMethod;
     private Caisse caisse;
+    private TransactionTypeEnum type;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdatedAt;
 
@@ -60,5 +62,13 @@ public class TransactionCaisseDTO extends AbstractDTO<Integer> {
 
     public java.time.ZonedDateTime getLastUpdatedAt() {
         return this.lastUpdatedAt;
+    }
+
+    public TransactionTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(TransactionTypeEnum type) {
+        this.type = type;
     }
 }

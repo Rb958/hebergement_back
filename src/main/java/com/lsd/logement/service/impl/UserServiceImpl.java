@@ -1,12 +1,15 @@
 package com.lsd.logement.service.impl;
 
 import com.lsd.logement.dao.UserRepository;
+import com.lsd.logement.entity.finance.Caisse;
 import com.lsd.logement.entity.personnel.User;
 import com.lsd.logement.exception.GeneralBaseException;
+import com.lsd.logement.exception.NotFoundMessage;
 import com.lsd.logement.exception.UserExceptionMessage;
 import com.lsd.logement.security.jwt.JwtUtils;
 import com.lsd.logement.security.payload.response.JwtResponse;
 import com.lsd.logement.security.services.UserDetailsImpl;
+import com.lsd.logement.service.CaisseService;
 import com.lsd.logement.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -32,17 +35,22 @@ public class UserServiceImpl implements UserService {
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
+    private final CaisseService caisseService;
 
 
-    public UserServiceImpl(UserRepository repository, JwtUtils jwtUtils, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository repository, JwtUtils jwtUtils, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, CaisseService caisseService) {
         this.repository = repository;
         this.jwtUtils = jwtUtils;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
+        this.caisseService = caisseService;
     }
 
     @Override
     public User save(User entity) {
+        ZonedDateTime currentDate = ZonedDateTime.now();
+        entity.setCreatedAt(currentDate);
+        entity.setLastUpdatedAt(currentDate);
         entity.setPassword(this.passwordEncoder.encode(entity.getPassword()));
         if (entity.getRoles() == null || entity.getRoles().isEmpty()){
             entity.setRoles("ROLE_USER");
@@ -100,12 +108,28 @@ public class UserServiceImpl implements UserService {
         if (!userDetails.getEnable()){
             throw new GeneralBaseException(UserExceptionMessage.USER_IS_DISABLED);
         }
-
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         User tmpUser = repository.findByUsername(userDetails.getUsername());
+
         tmpUser.setConnectedAt(ZonedDateTime.now());
         tmpUser = repository.save(tmpUser);
         return new JwtResponse(jwtToken,tmpUser,roles);
+    }
+
+    public User enableUser(Integer id){
+        Optional<User> optional = repository.findById(id);
+        if (!optional.isPresent()){
+            throw new GeneralBaseException(NotFoundMessage.USER_NOT_FOUND);
+        }
+        User user = optional.get();
+        user.setEnabled(true);
+        user.setLastUpdatedAt(ZonedDateTime.now());
+        return repository.save(user);
+    }
+
+    @Override
+    public Page<User> findAllUser(Pageable pageable) {
+        return repository.findAllByRolesIsNot("ROLE_ADMIN", pageable);
     }
 
     @Override

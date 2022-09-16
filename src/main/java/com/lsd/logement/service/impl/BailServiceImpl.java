@@ -27,6 +27,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -102,7 +103,17 @@ public class BailServiceImpl implements BailService {
     @Override
     public Page<Bail> findAll(Pageable pageable) {
         Page<Bail> entityPage = repository.findAll(pageable);
-        List<Bail> entities = entityPage.getContent();
+        List<Bail> entities = entityPage.getContent().stream()
+                .peek(bail -> {
+                    if (bail.getStatut() != BookingState.CLOTURER && bail.getStatut() != BookingState.ANNULE) {
+                        Date endDate = bail.getValidite();
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                        int echeance = Period.between(LocalDate.now(), LocalDate.parse(formatter.format(endDate))).getDays();
+                        bail.setEcheance(echeance);
+                    }
+                })
+                .collect(Collectors.toList());
+        repository.saveAll(entities);
         return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
     }
 

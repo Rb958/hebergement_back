@@ -17,6 +17,8 @@ public interface UserController {
 
     public ResponseEntity<ApiResponse<?>> list();
 
+    public ResponseEntity<ApiResponse<?>> enable(@PathVariable("id") Integer id);
+
     public ResponseEntity<ApiResponse<?>> pageQuery(Pageable pageable);
 
     public ResponseEntity<ApiResponse<?>> update(@RequestBody UserDTO dto, @PathVariable("id") Integer id);
