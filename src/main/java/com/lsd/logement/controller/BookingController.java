@@ -22,9 +22,9 @@ public interface BookingController {
 
     public ResponseEntity<ApiResponse<?>> update(@RequestBody BookingDTO dto, @PathVariable("id") Integer id);
 
-    public ResponseEntity<ApiResponse<?>> addPayment(@RequestBody PayementDTO dto, @PathVariable("bookingId") Integer id);
+    public ResponseEntity<ApiResponse<?>> addPayment(@PathVariable("userId") Integer userId, @RequestBody PayementDTO dto, @PathVariable("id") Integer id);
 
-    public ResponseEntity<ApiResponse<?>> removePayment(@RequestBody PayementDTO dto, @PathVariable("bookingId") Integer id);
+    public ResponseEntity<ApiResponse<?>> removePayment(@PathVariable("userId") Integer userId, @RequestBody PayementDTO dto, @PathVariable("id") Integer id);
 
     public ResponseEntity<ApiResponse<?>> cancelBooking(@PathVariable("bookingId") Integer bookingId);
 

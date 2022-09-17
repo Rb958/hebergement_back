@@ -31,6 +31,9 @@ public class Booking implements AbstractEntity<Integer> {
     private int sejour;
     @Enumerated(EnumType.STRING)
     private BookingState statut;
+    private int paidAmount;
+    private int totalAmount;
+    private int restAmount;
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
     @Enumerated(EnumType.STRING)
@@ -218,5 +221,29 @@ public class Booking implements AbstractEntity<Integer> {
                 ", payements=" + payements +
                 ", paymentStatus=" + paymentStatus +
                 '}';
+    }
+
+    public int getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(int paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public int getRestAmount() {
+        return restAmount;
+    }
+
+    public void setRestAmount(int restAmount) {
+        this.restAmount = restAmount;
     }
 }

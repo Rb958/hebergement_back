@@ -21,6 +21,9 @@ public class BookingDTO extends AbstractDTO<Integer> {
     private Date validite;
     private String numReservation;
     private int sejour;
+    private int paidAmount;
+    private int totalAmount;
+    private int restAmount;
     private BookingState statut;
     private PaymentStatus paymentStatus;
     private PeriodUnit preriodUnit;
@@ -168,5 +171,29 @@ public class BookingDTO extends AbstractDTO<Integer> {
 
     public java.util.List<Payement> getPayements() {
         return this.payements;
+    }
+
+    public int getRestAmount() {
+        return restAmount;
+    }
+
+    public void setRestAmount(int restAmount) {
+        this.restAmount = restAmount;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public int getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(int paidAmount) {
+        this.paidAmount = paidAmount;
     }
 }

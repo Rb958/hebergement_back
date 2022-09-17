@@ -150,6 +150,7 @@ public class CaisseServiceImpl implements CaisseService {
     @Override
     public Caisse findByUserId(Integer id) {
         Optional<Caisse> optional = repository.findByUser_Id(id);
+
         if (!optional.isPresent()){
             throw new GeneralBaseException(NotFoundMessage.CAISSE_NOT_FOUND);
         }

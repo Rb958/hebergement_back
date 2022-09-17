@@ -82,7 +82,11 @@ public class BookingServiceImpl implements BookingService {
             if (payement.getAmount() <= 0){
                 entity.setPaymentStatus(PaymentStatus.IMPAYE);
             }else {
-                int rest = computTolatPrice(entity) - payement.getAmount();
+                int localAmountForPeriod = computTolatPrice(entity);
+                int rest = localAmountForPeriod - payement.getAmount();
+                entity.setPaidAmount(payement.getAmount());
+                entity.setRestAmount(rest);
+                entity.setTotalAmount(localAmountForPeriod);
                 payement.setRest(rest);
                 entity.setStatut(BookingState.CONFIRME);
                 if (rest <= 0) {
@@ -100,6 +104,17 @@ public class BookingServiceImpl implements BookingService {
         } else {
             entity.setPaymentStatus(PaymentStatus.IMPAYE);
         }
+    }
+
+    private int computePaid(Booking entity) {
+        Optional<Booking> optional = repository.findById(entity.getId());
+        AtomicInteger totalAmount = new AtomicInteger(0);
+        if (!optional.isPresent()) {
+            throw new GeneralBaseException(NotFoundMessage.BOOKING_NOTFOUND);
+        }
+        List<Payement> payments = optional.get().getPayements();
+        payments.forEach(payment -> totalAmount.addAndGet(payment.getAmount()));
+        return totalAmount.get();
     }
 
 
@@ -157,24 +172,33 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking addPayment(Integer bookingId, Payement payement) {
+    public Booking addPayment(Integer userId, Integer bookingId, Payement payement) {
         Optional<Booking> opt = repository.findById(bookingId);
         if (!opt.isPresent()){
             throw new GeneralBaseException(NotFoundMessage.BOOKING_NOTFOUND);
         }
         Booking booking = opt.get();
-        booking.getPayements().add(payement);
+        int currentRest = booking.getRestAmount() - payement.getAmount();
+        int currentPaidAmount = booking.getPaidAmount() + payement.getAmount();
+        booking.setPaidAmount(currentPaidAmount);
+        booking.setRestAmount(currentRest);
+        if (currentRest <= 0){
+            booking.setPaymentStatus(PaymentStatus.PAYE);
+        }
         Local local = booking.getLocal();
         if (local != null){
             int currentCa = local.getCa() + payement.getAmount();
             local.setCa(currentCa);
             localService.update(local, local.getId());
         }
+        payement.setBooking(booking);
+        Payement newPayment = payementRepository.save(payement);
+        caisseService.pay(newPayment, userId);
         return repository.save(booking);
     }
 
     @Override
-    public Booking removePayment(Integer bookingId, Payement payement) {
+    public Booking removePayment(Integer userId, Integer bookingId, Payement payement) {
         Optional<Booking> opt = repository.findById(bookingId);
         if (!opt.isPresent()){
             throw new GeneralBaseException(NotFoundMessage.BOOKING_NOTFOUND);

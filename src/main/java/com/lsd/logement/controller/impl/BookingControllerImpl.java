@@ -110,12 +110,12 @@ public class BookingControllerImpl implements BookingController {
         }
     }
 
-    @PatchMapping("/payment/add/{id}")
+    @PatchMapping("/user/{userId}/payment/add/{id}")
     @Override
-    public ResponseEntity<ApiResponse<?>> addPayment(PayementDTO paymentDto, Integer id) {
+    public ResponseEntity<ApiResponse<?>> addPayment(Integer userId, PayementDTO paymentDto, Integer id) {
         try {
             return ResponseEntity.ok(
-                    new ApiResponse<>(bookingMapper.asDTO(bookingService.addPayment(id, payementMapper.asEntity(paymentDto))))
+                    new ApiResponse<>(bookingMapper.asDTO(bookingService.addPayment(userId, id, payementMapper.asEntity(paymentDto))))
             );
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));
@@ -123,11 +123,11 @@ public class BookingControllerImpl implements BookingController {
     }
 
     @Override
-    @PatchMapping("/payment/remove/{id}")
-    public ResponseEntity<ApiResponse<?>> removePayment(PayementDTO dto, Integer id) {
+    @PatchMapping("/user/{userId}/payment/remove/{id}")
+    public ResponseEntity<ApiResponse<?>> removePayment(Integer userId, PayementDTO dto, Integer id) {
         try {
             return ResponseEntity.ok(
-                    new ApiResponse<>(bookingMapper.asDTO(bookingService.removePayment(id, payementMapper.asEntity(dto))))
+                    new ApiResponse<>(bookingMapper.asDTO(bookingService.removePayment(userId, id, payementMapper.asEntity(dto))))
             );
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));
