@@ -1,6 +1,7 @@
 package com.lsd.logement.service.impl;
 
 import com.lsd.logement.dao.BailRepository;
+import com.lsd.logement.dao.PayementRepository;
 import com.lsd.logement.entity.finance.Payement;
 import com.lsd.logement.entity.finance.PaymentStatus;
 import com.lsd.logement.entity.infra.Local;
@@ -18,13 +19,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -35,11 +31,13 @@ public class BailServiceImpl implements BailService {
     private final BailRepository repository;
     private final LocalService localService;
     private final CaisseService caisseService;
+    private final PayementRepository payementRepository;
 
-    public BailServiceImpl(BailRepository repository, LocalService localService, CaisseService caisseService) {
+    public BailServiceImpl(BailRepository repository, LocalService localService, CaisseService caisseService, PayementRepository payementRepository) {
         this.repository = repository;
         this.localService = localService;
         this.caisseService = caisseService;
+        this.payementRepository = payementRepository;
     }
 
     @Override
@@ -49,6 +47,10 @@ public class BailServiceImpl implements BailService {
         entity.setCreatedAt(currentDate);
         entity.setLastUpdatedAt(currentDate);
         entity.setNumReservation(genCode());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(dateFormat.format(entity.getDateEntre()));
+        LocalDate validity = localDate.plusMonths(entity.getSejour());
+        entity.setValidite(Date.from(validity.atStartOfDay(ZoneId.systemDefault()).toInstant()));
         entity.getPayements().forEach(payement -> {
             payement.setBail(entity);
             payement.setBooking(null);
@@ -103,18 +105,22 @@ public class BailServiceImpl implements BailService {
     @Override
     public Page<Bail> findAll(Pageable pageable) {
         Page<Bail> entityPage = repository.findAll(pageable);
-        List<Bail> entities = entityPage.getContent().stream()
-                .peek(bail -> {
-                    if (bail.getStatut() != BookingState.CLOTURER && bail.getStatut() != BookingState.ANNULE) {
-                        Date endDate = bail.getValidite();
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                        int echeance = Period.between(LocalDate.now(), LocalDate.parse(formatter.format(endDate))).getDays();
-                        bail.setEcheance(echeance);
-                    }
-                })
-                .collect(Collectors.toList());
-        repository.saveAll(entities);
-        return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
+        if(entityPage.hasContent()) {
+            List<Bail> entities = entityPage.getContent().stream()
+                    .peek(bail -> {
+                        if (bail.getStatut() != BookingState.CLOTURER && bail.getStatut() != BookingState.ANNULE) {
+                            Date endDate = bail.getValidite();
+                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                            int echeance = Period.between(LocalDate.now(), LocalDate.parse(formatter.format(endDate))).getDays();
+                            bail.setEcheance(echeance);
+                        }
+                    })
+                    .collect(Collectors.toList());
+            repository.saveAll(entities);
+            return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
+        }else{
+            return entityPage;
+        }
     }
 
     @Override
@@ -129,19 +135,28 @@ public class BailServiceImpl implements BailService {
     }
 
     @Override
-    public Bail addPayment(Integer bailId, Payement payement) {
+    public Bail addPayment(Integer userId, Integer bailId, Payement payement) {
         Optional<Bail> opt = repository.findById(bailId);
         if (!opt.isPresent()){
             throw new GeneralBaseException(NotFoundMessage.BOOKING_NOTFOUND);
         }
         Bail bail = opt.get();
-        bail.getPayements().add(payement);
+        int currentRest = bail.getRestAmount() - payement.getAmount();
+        int currentPaidAmount = bail.getPaidAmount() + payement.getAmount();
+        bail.setPaidAmount(currentPaidAmount);
+        bail.setRestAmount(currentRest);
+        if (currentRest <= 0){
+            bail.setPaymentStatus(PaymentStatus.PAYE);
+        }
         Local local = bail.getLocal();
         if (local != null){
             int currentCa = local.getCa() + payement.getAmount();
             local.setCa(currentCa);
             localService.update(local, local.getId());
         }
+        payement.setBail(bail);
+        Payement newPayment = payementRepository.save(payement);
+        caisseService.pay(newPayment, userId);
         return repository.save(bail);
     }
 
@@ -227,7 +242,11 @@ public class BailServiceImpl implements BailService {
             if (payement.getAmount() <= 0){
                 entity.setPaymentStatus(PaymentStatus.IMPAYE);
             }else {
-                int rest = computTolatPrice(entity) - payement.getAmount();
+                int localAmountForPeriod = computTolatPrice(entity);
+                int rest = localAmountForPeriod - payement.getAmount();
+                entity.setPaidAmount(payement.getAmount());
+                entity.setRestAmount(rest);
+                entity.setTotalAmount(localAmountForPeriod);
                 payement.setRest(rest);
                 entity.setStatut(BookingState.CONFIRME);
                 if (rest <= 0) {
@@ -237,7 +256,7 @@ public class BailServiceImpl implements BailService {
                     payement.setLast(false);
                     entity.setPaymentStatus(PaymentStatus.PARTIELLE);
                 }
-                new Thread(() -> caisseService.pay(payement, userId)).start();
+                caisseService.pay(payement, userId);
             }
             List<Payement> payments = new ArrayList<>();
             payments.add(payement);

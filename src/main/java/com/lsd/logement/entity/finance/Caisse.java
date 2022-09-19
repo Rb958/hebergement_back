@@ -109,20 +109,6 @@ public class Caisse implements AbstractEntity<Integer> {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Caisse{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", ref='" + ref + '\'' +
-                ", status=" + status +
-                ", solde=" + solde +
-                ", createdBy=" + user +
-                ", createdAt=" + createdAt +
-                ", lastUpdatedAt=" + lastUpdatedAt +
-                '}';
-    }
-
     public ZonedDateTime getLastOpening() {
         return lastOpening;
     }
@@ -161,5 +147,24 @@ public class Caisse implements AbstractEntity<Integer> {
 
     public void setPrincipal(boolean principal) {
         this.principal = principal;
+    }
+
+    @Override
+    public String toString() {
+        return "Caisse{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", ref='" + ref + '\'' +
+                ", principal=" + principal +
+                ", status=" + status +
+                ", solde=" + solde +
+                ", user=" + user +
+                ", lastOpening=" + lastOpening +
+                ", lastClosing=" + lastClosing +
+                ", createdAt=" + createdAt +
+                ", lastUpdatedAt=" + lastUpdatedAt +
+                ", transactionCaisses=" + transactionCaisses +
+                ", sousCaisses=" + sousCaisses +
+                '}';
     }
 }

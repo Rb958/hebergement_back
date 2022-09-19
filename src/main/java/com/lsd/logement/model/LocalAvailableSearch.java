@@ -1,6 +1,5 @@
 package com.lsd.logement.model;
 
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class LocalAvailableSearch {

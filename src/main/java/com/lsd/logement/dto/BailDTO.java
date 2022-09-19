@@ -20,6 +20,10 @@ public class BailDTO extends AbstractDTO<Integer> {
     private BookingState statut;
     private int sejour;
     private int echeance;
+    private int paidAmount;
+    private int totalAmount;
+    private int restAmount;
+    private String pj;
     private PeriodUnit preriodUnit;
     private PaymentStatus paymentStatus;
     private ZonedDateTime createdAt;
@@ -150,5 +154,37 @@ public class BailDTO extends AbstractDTO<Integer> {
 
     public void setEcheance(int echeance) {
         this.echeance = echeance;
+    }
+
+    public int getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(int paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public int getRestAmount() {
+        return restAmount;
+    }
+
+    public void setRestAmount(int restAmount) {
+        this.restAmount = restAmount;
+    }
+    
+    public String getPj() {
+        return pj;
+    }
+
+    public void setPj(String pj) {
+        this.pj = pj;
     }
 }

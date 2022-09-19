@@ -14,6 +14,7 @@ public class DepenseDTO extends AbstractDTO<Integer> {
     private StatutDepense status;
     private String srcDepense;
     private int montant;
+    private String validatedBy;
     private String commentaire;
     private String pieceJointe;
     private ZonedDateTime createdAt;
@@ -116,5 +117,13 @@ public class DepenseDTO extends AbstractDTO<Integer> {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getValidatedBy() {
+        return validatedBy;
+    }
+
+    public void setValidatedBy(String validatedBy) {
+        this.validatedBy = validatedBy;
     }
 }

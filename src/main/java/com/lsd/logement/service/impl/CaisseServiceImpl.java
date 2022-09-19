@@ -164,8 +164,13 @@ public class CaisseServiceImpl implements CaisseService {
             throw new GeneralBaseException(NotFoundMessage.CAISSE_NOT_FOUND);
         }
         Caisse tmpCaise = optional.get();
+        List<SousCaisse> sousCaisses = caisse.getSousCaisses();
+        sousCaisses.forEach(item -> item.setCaisse(tmpCaise));
         tmpCaise.setSolde(caisse.getSolde());
+        tmpCaise.setLastOpening(ZonedDateTime.now());
+        tmpCaise.setLastUpdatedAt(ZonedDateTime.now());
         tmpCaise.setStatus(StatutCaisse.ATTENTE);
+        tmpCaise.setSousCaisses(sousCaisses);
         return repository.save(tmpCaise);
     }
 
@@ -232,10 +237,15 @@ public class CaisseServiceImpl implements CaisseService {
         if (!caisseOptional.isPresent()){
             throw new GeneralBaseException(NotFoundMessage.CAISSE_NOT_FOUND);
         }
-        Caisse tmpCaisse = caisseOptional.get();
-        tmpCaisse.setStatus(StatutCaisse.ATTENTE_FERMETURE);
-        tmpCaisse.setLastClosing(ZonedDateTime.now());
-        return repository.save(tmpCaisse);
+        Caisse tmpCaise = caisseOptional.get();
+        List<SousCaisse> sousCaisses = caisse.getSousCaisses();
+        sousCaisses.forEach(item -> item.setCaisse(tmpCaise));
+        tmpCaise.setSolde(caisse.getSolde());
+        tmpCaise.setLastClosing(ZonedDateTime.now());
+        tmpCaise.setLastUpdatedAt(ZonedDateTime.now());
+        tmpCaise.setStatus(StatutCaisse.ATTENTE_FERMETURE);
+        tmpCaise.setSousCaisses(sousCaisses);
+        return repository.save(tmpCaise);
     }
 
     @Override

@@ -27,7 +27,12 @@ public class Bail implements AbstractEntity<Integer> {
     @Enumerated(EnumType.STRING)
     private BookingState statut;
     private int sejour;
+    private int paidAmount;
+    private int totalAmount;
+    private int restAmount;
     private int echeance;
+    private String pj;
+
     @Enumerated(EnumType.STRING)
     private PeriodUnit preriodUnit;
     @Enumerated(EnumType.STRING)
@@ -150,6 +155,14 @@ public class Bail implements AbstractEntity<Integer> {
     public void setLocataireSociete(LocataireSociete locataireSociete) {
         this.locataireSociete = locataireSociete;
     }
+    
+    public String getPj() {
+        return pj;
+    }
+
+    public void setPj(String pj) {
+        this.pj = pj;
+    }
 
     public LocataireParticulier getLocataireParticulier() {
         return locataireParticulier;
@@ -173,5 +186,29 @@ public class Bail implements AbstractEntity<Integer> {
 
     public void setEcheance(int echeance) {
         this.echeance = echeance;
+    }
+
+    public int getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(int paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public int getRestAmount() {
+        return restAmount;
+    }
+
+    public void setRestAmount(int restAmount) {
+        this.restAmount = restAmount;
     }
 }

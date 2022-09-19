@@ -21,5 +21,8 @@ public interface BookingRepository extends PagingAndSortingRepository<Booking, I
     @Query("select distinct l from Local l where l.typeLocal = :typeLocal and l.categorie = :categorie and l not in (select b.local from Booking b where b.validite > :startDate or b.statut <> :state) and l not in (select b.local from Bail b where b.validite > :startDate or b.statut <> :state)")
     List<Local> findLocalAvailable(@Param("typeLocal") TypeLocal typeLocal, @Param("startDate") Date startDate, @Param("categorie") CategorieEnum categorie, BookingState state);
 
+    @Query("select distinct l from Local l where l.categorie = :categorie and l not in (select b.local from Booking b where b.validite > :startDate or b.statut <> :state) and l not in (select b.local from Bail b where b.validite > :startDate or b.statut <> :state)")
+    List<Local> findLocalAvailable(@Param("startDate") Date startDate, @Param("categorie") CategorieEnum categorie, BookingState state);
+
     int countAllByValiditeGreaterThanEqualAndStatutIsNot(Date date, BookingState cloturer);
 }

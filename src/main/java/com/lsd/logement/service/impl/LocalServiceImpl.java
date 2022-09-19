@@ -124,7 +124,6 @@ public class LocalServiceImpl implements LocalService {
     @Override
     public List<Local> findLocalAvailableNonMeuble(LocalAvailableSearch search) {
         return bookingRepository.findLocalAvailable(
-                TypeLocal.valueOf(search.getTypeLocal()),
                 search.getStartDate(),
                 CategorieEnum.NON_MEUBLÉ,
                 BookingState.CLOTURER

@@ -22,6 +22,7 @@ public class Depense implements AbstractEntity<Integer> {
     private String srcDepense;
     private String type;
     private int montant;
+    private String validatedBy;
     @Column(columnDefinition = "TEXT")
     private String commentaire;
     private String pieceJointe;
@@ -130,5 +131,13 @@ public class Depense implements AbstractEntity<Integer> {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getValidatedBy() {
+        return validatedBy;
+    }
+
+    public void setValidatedBy(String validatedBy) {
+        this.validatedBy = validatedBy;
     }
 }

@@ -108,12 +108,12 @@ public class BailControllerImpl implements BailController {
         }
     }
 
-    @PatchMapping("/payment/add/{id}")
+    @PatchMapping("/user/{userId}/payment/add/{id}")
     @Override
-    public ResponseEntity<ApiResponse<?>> addPayment(PayementDTO paymentDto, Integer id) {
+    public ResponseEntity<ApiResponse<?>> addPayment(Integer userId, PayementDTO paymentDto, Integer id) {
         try {
             return ResponseEntity.ok(
-                    new ApiResponse<>(bailMapper.asDTO(bailService.addPayment(id, payementMapper.asEntity(paymentDto))))
+                    new ApiResponse<>(bailMapper.asDTO(bailService.addPayment(userId, id, payementMapper.asEntity(paymentDto))))
             );
         }catch (Exception e) {
             return ResponseEntity.ok(ApiResponse.from(e));

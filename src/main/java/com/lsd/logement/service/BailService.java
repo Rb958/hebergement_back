@@ -10,7 +10,7 @@ public interface BailService extends GenericService<Bail, Integer> {
 
     Bail save(Bail entity, Integer userId);
 
-    Bail addPayment(Integer bailId, Payement payement);
+    Bail addPayment(Integer userId, Integer bailId, Payement payement);
 
     Bail removePayment(Integer bailId, Payement payement);
 

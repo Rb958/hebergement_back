@@ -21,11 +21,11 @@ public interface BailController {
 
     ResponseEntity<ApiResponse<?>> update(@RequestBody BailDTO dto, @PathVariable("id") Integer id);
 
-    public ResponseEntity<ApiResponse<?>> addPayment(@RequestBody PayementDTO dto, @PathVariable("id") Integer id);
+    ResponseEntity<ApiResponse<?>> addPayment(@PathVariable("userId") Integer userId, @RequestBody PayementDTO dto, @PathVariable("id") Integer id);
 
-    public ResponseEntity<ApiResponse<?>> removePayment(@RequestBody PayementDTO dto, @PathVariable("id") Integer id);
+    ResponseEntity<ApiResponse<?>> removePayment(@RequestBody PayementDTO dto, @PathVariable("id") Integer id);
 
-    public ResponseEntity<ApiResponse<?>> cancelBail(@PathVariable("id") Integer id);
+    ResponseEntity<ApiResponse<?>> cancelBail(@PathVariable("id") Integer id);
 
-    public ResponseEntity<ApiResponse<?>> bailState();
+    ResponseEntity<ApiResponse<?>> bailState();
 }
